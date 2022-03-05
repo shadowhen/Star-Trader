@@ -38,3 +38,27 @@ func _physics_process(delta):
 	if direction_vec.length() < 5:
 		return
 	move_and_collide(direction_normal * SPEED * delta)
+
+# This function implements both ship upgrades.  
+func _ship_upgrade(current_balance, current_ship_upgrade):
+	# Logic for first upgrade. 
+	if current_ship_upgrade == 0:
+		if current_balance < 500:
+			print("You do not have enough credits to redeem your first upgrade. ")
+		else:
+			current_ship_upgrade += 1
+			current_balance = current_balance - 500
+			print("Your ship has been successfully upgraded! ")
+
+	# Logic for second upgrade.
+	elif current_ship_upgrade == 1:
+		if current_balance < 3000:
+			print("You do not have enough credits to redeem your second upgrade. ")
+		else:
+			current_ship_upgrade += 1
+			current_balance = current_balance - 3000
+			print("Your ship has been successfully upgraded! ")
+
+	# Fully Upgraded.
+	else:
+		print("Your ship is fully upgraded traveler! ")

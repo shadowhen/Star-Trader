@@ -21,6 +21,7 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+z_index = 1
 
 [node name="Camera" type="Camera2D" parent="."]
 current = true

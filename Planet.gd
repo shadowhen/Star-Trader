@@ -10,12 +10,4 @@ func _on_Planet_input_event(viewport, event, shape_idx):
 func _on_Planet_body_entered(body):
 	if not body.is_in_group("player"):
 		return
-	body.interact_planet = true
-	print("entering " + name)
-
-
-func _on_Planet_body_exited(body):
-	if not body.is_in_group("player"):
-		return
-	body.interact_planet = false
-	print("leaving " + name)
+	# TODO: Update the game with information about the planet

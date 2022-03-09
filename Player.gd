@@ -1,43 +1,31 @@
-extends KinematicBody2D
+extends Node2D
 
-const SPEED = 250.0
+export(int) var cash
+export(int) var upgrade_level
+export(NodePath) var start_position_path
 
-export var current_balance : int = 100
+onready var parent = get_parent()
+onready var ship = get_node("Ship")
 
-var move_pressed = false
-var target_position = Vector2()
-var interact_planet = false
+var interact_planet = true
 
 func _ready():
-	var planets = get_tree().get_nodes_in_group("planets")
-	for planet in planets:
-		planet.connect("click_move", self, "_update_target_position")
-
-	var trades = get_tree().get_nodes_in_group("trade")
-	for trade in trades:
-		trade.connect("trade_amount", self, "_conduct_trade")
+	# Set where the player's ship should start
+	var start_position = get_node(start_position_path)
+	if start_position != null:
+		position = start_position.global_position
 
 func _unhandled_input(event):
+	# Interacts the planet when the player presses an action
 	if interact_planet and event.is_action_pressed("trade"):
-		$"../GUI/Trade/".visible = not $"../GUI/Trade/".visible
+		parent.request_planet_interaction()
 
-func _update_target_position(target_position):
-	self.target_position = target_position
-	
-func _conduct_trade(cargo_type, currency, amount):
-	#print("traded %d for %s" % [amount, ItemTrade.get_cargo_str(cargo_type)])
-	
-	# Calculate new balance
-	current_balance += currency
-	print("Current balance: %d" % current_balance)
-
-func _physics_process(delta):
-	var direction_vec = target_position - global_position
-	var direction_normal = direction_vec.normalized()
-	
-	if direction_vec.length() < 5:
-		return
-	move_and_collide(direction_normal * SPEED * delta)
+func go_to_planet(target):
+	# Prevents player from picking another planet to move
+	# while the ship is traveling
+	if interact_planet:
+		interact_planet = false
+		ship.go_to_planet(target)
 
 # This function implements both ship upgrades.  
 func _ship_upgrade(current_balance, current_ship_upgrade):
@@ -62,3 +50,7 @@ func _ship_upgrade(current_balance, current_ship_upgrade):
 	# Fully Upgraded.
 	else:
 		print("Your ship is fully upgraded traveler! ")
+
+func _on_Ship_reached_target():
+	# Allows the player to interact with the planet
+	interact_planet = true

@@ -21,12 +21,13 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+z_index = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 2, 2 )
 smoothing_speed = 6.0
 script = ExtResource( 6 )
 move_speed = 200.0

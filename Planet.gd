@@ -12,10 +12,13 @@ func _on_Planet_body_entered(body):
 		return
 	body.interact_planet = true
 	print("entering " + name)
+	PlayerData.player_stats["CurrentPlanet"]["Value"] = name
 	
 	var tradepanel = load("res://Trade.tscn").instance()
 	add_child(tradepanel)
 	get_node("Trade").connect("close_tradepanel", self, "close_tradepanel")
+	
+	
 	
 func close_tradepanel() -> void:
 	get_node("Trade").queue_free()
@@ -25,3 +28,4 @@ func _on_Planet_body_exited(body):
 		return
 	body.interact_planet = false
 	print("leaving " + name)
+	PlayerData.player_stats["CurrentPlanet"]["Value"] = "-1"

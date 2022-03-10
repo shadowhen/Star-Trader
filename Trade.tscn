@@ -86,73 +86,25 @@ margin_right = 754.0
 margin_bottom = 14.0
 
 [node name="WindowLabel" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_right = 80.0
+margin_right = 248.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Item"
 
 [node name="WindowLabel3" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 84.0
-margin_right = 164.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Planet 1"
-align = 1
-
-[node name="WindowLabel4" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 168.0
-margin_right = 248.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Planet 2"
-align = 1
-
-[node name="WindowLabel5" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
 margin_left = 252.0
-margin_right = 332.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Planet 3"
-align = 1
-
-[node name="WindowLabel6" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 336.0
-margin_right = 417.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Planet 4"
-align = 1
-
-[node name="WindowLabel7" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 421.0
 margin_right = 501.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Planet 5"
-align = 1
-
-[node name="WindowLabel8" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 505.0
-margin_right = 585.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Planet 6"
-align = 1
-
-[node name="WindowLabel9" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 589.0
-margin_right = 669.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Planet 7"
+text = "Week Aquired"
 align = 1
 
 [node name="WindowLabel10" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
-margin_left = 673.0
+margin_left = 505.0
 margin_right = 754.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Sell (For)"
+text = "Sell"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="Sell"]

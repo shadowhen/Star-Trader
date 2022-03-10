@@ -32,7 +32,7 @@ smoothing_speed = 6.0
 script = ExtResource( 6 )
 move_speed = 200.0
 
-[node name="Planet" parent="." instance=ExtResource( 4 )]
+[node name="Planet1" parent="." instance=ExtResource( 4 )]
 position = Vector2( -260, -47 )
 
 [node name="Planet2" parent="." instance=ExtResource( 4 )]

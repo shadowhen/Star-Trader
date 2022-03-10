@@ -11,8 +11,8 @@ var destination = Vector2()
 var target_position = Vector2()
 var velocity = Vector2()
 var speed = 0
-var max_speed = 200
-var acceleration = 50
+var max_speed = 500
+var acceleration = 500
 var is_moving = false
 
 func _ready():

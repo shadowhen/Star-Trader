@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ItemTrade.gd" type="Script" id=1]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+margin_top = 44.0
+margin_right = 1252.0
+margin_bottom = 64.0
+
+[node name="FoodTrade" type="HBoxContainer" parent="." groups=["trade"]]
+margin_right = 1252.0
+margin_bottom = 20.0
+script = ExtResource( 1 )
+
+[node name="ItemLabel" type="Label" parent="FoodTrade"]
+margin_top = 3.0
+margin_right = 414.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Food"
+valign = 1
+
+[node name="ItemDate" type="Label" parent="FoodTrade"]
+margin_left = 418.0
+margin_top = 3.0
+margin_right = 833.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "5 Weeks"
+align = 1
+valign = 1
+
+[node name="Sell" type="Button" parent="FoodTrade"]
+margin_left = 837.0
+margin_right = 1252.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Sell"
+
+[connection signal="pressed" from="FoodTrade/Sell" to="FoodTrade" method="_on_Sell_pressed"]

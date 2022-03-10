@@ -1,0 +1,41 @@
+[gd_scene format=2]
+
+[node name="FoodTrade" type="HBoxContainer" groups=["trade"]]
+margin_right = 735.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 735, 0 )
+
+[node name="ItemLabel" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 180.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Food"
+valign = 1
+
+[node name="Available" type="Label" parent="."]
+margin_left = 184.0
+margin_top = 3.0
+margin_right = 365.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "5"
+align = 1
+valign = 1
+
+[node name="Price" type="Label" parent="."]
+margin_left = 369.0
+margin_top = 3.0
+margin_right = 550.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "$4"
+align = 1
+valign = 1
+
+[node name="Buy2" type="Button" parent="."]
+margin_left = 554.0
+margin_right = 735.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Buy 1"

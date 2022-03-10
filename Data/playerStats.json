@@ -1,0 +1,17 @@
+{
+  "TimeUsed": {
+    "Value": 0
+  },
+  "Money": {
+    "Value": 50
+  },
+  "ShipLvl": {
+    "Value": 1
+  },
+  "InventoryCap": {
+    "Value": 10
+  },
+  "CurrentPlanet": {
+    "Value": 1
+  }
+}

@@ -8,21 +8,16 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "HBoxContainer",
-"class": "ItemTrade",
-"language": "GDScript",
-"path": "res://ItemTrade.gd"
-} ]
-_global_script_class_icons={
-"ItemTrade": ""
-}
-
 [application]
 
 config/name="Game 2"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+GameData="*res://Singletons/GameData.gd"
+PlayerData="*res://Singletons/PlayerData.gd"
 
 [display]
 

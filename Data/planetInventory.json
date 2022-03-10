@@ -1,0 +1,65 @@
+{
+  "1": {
+    "P1Avail": 6,
+    "P2Avail": 8,
+    "P3Avail": 7,
+    "P4Avail": 0,
+    "P5Avail": 9,
+    "P6Avail": 0,
+    "P7Avail": 2
+  },
+  "2": {
+    "P1Avail": 7,
+    "P2Avail": 8,
+    "P3Avail": 5,
+    "P4Avail": 3,
+    "P5Avail": 6,
+    "P6Avail": 8,
+    "P7Avail": 7
+  },
+  "3": {
+    "P1Avail": 8,
+    "P2Avail": 9,
+    "P3Avail": 9,
+    "P4Avail": 9,
+    "P5Avail": 8,
+    "P6Avail": 4,
+    "P7Avail": 1
+  },
+  "4": {
+    "P1Avail": 2,
+    "P2Avail": 8,
+    "P3Avail": 0,
+    "P4Avail": 8,
+    "P5Avail": 8,
+    "P6Avail": 9,
+    "P7Avail": 8
+  },
+  "5": {
+    "P1Avail": 4,
+    "P2Avail": 9,
+    "P3Avail": 3,
+    "P4Avail": 7,
+    "P5Avail": 5,
+    "P6Avail": 8,
+    "P7Avail": 2
+  },
+  "6": {
+    "P1Avail": 5,
+    "P2Avail": 0,
+    "P3Avail": 1,
+    "P4Avail": 3,
+    "P5Avail": 4,
+    "P6Avail": 8,
+    "P7Avail": 9
+  },
+  "7": {
+    "P1Avail": 9,
+    "P2Avail": 5,
+    "P3Avail": 8,
+    "P4Avail": 0,
+    "P5Avail": 7,
+    "P6Avail": 8,
+    "P7Avail": 2
+  }
+}

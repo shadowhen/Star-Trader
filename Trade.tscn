@@ -1,94 +1,268 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ItemTrade.gd" type="Script" id=1]
+[ext_resource path="res://Trade.gd" type="Script" id=2]
 
 [node name="Trade" type="Panel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -223.0
-margin_top = -161.0
-margin_right = 223.0
-margin_bottom = 161.0
+margin_left = -386.0
+margin_top = -175.0
+margin_right = 414.0
+margin_bottom = 207.0
+rect_pivot_offset = Vector2( 607, 226 )
+script = ExtResource( 2 )
 
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="Buy" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 22.0
-margin_right = -20.0
-margin_bottom = -22.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = 24.0
+margin_top = 23.0
+margin_right = -16.0
+margin_bottom = -21.0
 
-[node name="Top" type="HBoxContainer" parent="Container"]
-margin_right = 406.0
+[node name="Top" type="HBoxContainer" parent="Buy"]
+margin_right = 760.0
 margin_bottom = 14.0
 
-[node name="WindowLabel" type="Label" parent="Container/Top"]
-margin_right = 201.0
+[node name="WindowLabel" type="Label" parent="Buy/Top"]
+margin_right = 179.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Trade"
+text = "Item"
 
-[node name="Label" type="Label" parent="Container/Top"]
-margin_left = 205.0
-margin_right = 406.0
+[node name="WindowLabel2" type="Label" parent="Buy/Top"]
+margin_left = 183.0
+margin_right = 362.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "0"
+text = "Available"
+align = 1
+
+[node name="WindowLabel3" type="Label" parent="Buy/Top"]
+margin_left = 366.0
+margin_right = 545.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Price"
+align = 1
+
+[node name="Label" type="Label" parent="Buy/Top"]
+margin_left = 549.0
+margin_right = 759.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 210, 0 )
+size_flags_horizontal = 3
 align = 2
 
-[node name="HSeparator" type="HSeparator" parent="Container"]
+[node name="HSeparator" type="HSeparator" parent="Buy"]
 margin_top = 18.0
-margin_right = 406.0
+margin_right = 760.0
 margin_bottom = 22.0
 
-[node name="FoodTrade" type="HBoxContainer" parent="Container" groups=["trade"]]
+[node name="BuyList" type="ScrollContainer" parent="Buy"]
 margin_top = 26.0
-margin_right = 406.0
-margin_bottom = 46.0
-script = ExtResource( 1 )
+margin_right = 760.0
+margin_bottom = 126.0
+rect_min_size = Vector2( 735, 100 )
 
-[node name="ItemLabel" type="Label" parent="Container/FoodTrade"]
-margin_top = 3.0
-margin_right = 132.0
-margin_bottom = 17.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Buy/BuyList"]
+
+[node name="Sell" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 21.0
+margin_top = 160.0
+margin_right = -25.0
+margin_bottom = 190.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Sell"]
+margin_right = 754.0
+margin_bottom = 14.0
+
+[node name="Row Labels" type="HBoxContainer" parent="Sell/VBoxContainer2"]
+margin_right = 754.0
+margin_bottom = 14.0
+
+[node name="WindowLabel" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_right = 80.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Food"
+text = "Item"
+
+[node name="WindowLabel3" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Planet 1"
 align = 1
-valign = 1
 
-[node name="Price" type="Label" parent="Container/FoodTrade"]
-margin_left = 136.0
-margin_top = 3.0
-margin_right = 269.0
-margin_bottom = 17.0
+[node name="WindowLabel4" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 168.0
+margin_right = 248.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "450"
+text = "Planet 2"
 align = 1
-valign = 1
 
-[node name="BuySell" type="HBoxContainer" parent="Container/FoodTrade"]
-margin_left = 273.0
-margin_right = 406.0
-margin_bottom = 20.0
+[node name="WindowLabel5" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 252.0
+margin_right = 332.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
+text = "Planet 3"
+align = 1
 
-[node name="Buy" type="Button" parent="Container/FoodTrade/BuySell"]
-margin_right = 64.0
-margin_bottom = 20.0
+[node name="WindowLabel6" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 336.0
+margin_right = 417.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Buy"
+text = "Planet 4"
+align = 1
 
-[node name="Sell" type="Button" parent="Container/FoodTrade/BuySell"]
-margin_left = 68.0
-margin_right = 133.0
-margin_bottom = 20.0
+[node name="WindowLabel7" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 421.0
+margin_right = 501.0
+margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Sell"
+text = "Planet 5"
+align = 1
 
-[connection signal="pressed" from="Container/FoodTrade/BuySell/Buy" to="Container/FoodTrade" method="_on_Buy_pressed"]
-[connection signal="pressed" from="Container/FoodTrade/BuySell/Sell" to="Container/FoodTrade" method="_on_Sell_pressed"]
+[node name="WindowLabel8" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 505.0
+margin_right = 585.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Planet 6"
+align = 1
+
+[node name="WindowLabel9" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 589.0
+margin_right = 669.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Planet 7"
+align = 1
+
+[node name="WindowLabel10" type="Label" parent="Sell/VBoxContainer2/Row Labels"]
+margin_left = 673.0
+margin_right = 754.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Sell (For)"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="Sell"]
+margin_top = 18.0
+margin_right = 754.0
+margin_bottom = 22.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 25.0
+margin_top = 205.0
+margin_right = 775.0
+margin_bottom = 355.0
+
+[node name="ItemSellContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 735.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 735, 150 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 251.0
+margin_top = -147.0
+margin_right = 515.0
+margin_bottom = -17.0
+color = Color( 0.145098, 0.145098, 0.164706, 1 )
+
+[node name="Info" type="VBoxContainer" parent="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 12.0
+margin_right = -11.0
+margin_bottom = -33.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Info"]
+margin_right = 241.0
+margin_bottom = 68.0
+
+[node name="Time" type="HBoxContainer" parent="ColorRect/Info/VBoxContainer"]
+margin_right = 241.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="ColorRect/Info/VBoxContainer/Time"]
+margin_right = 241.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "1 Week Gone, 51 Remaining"
+align = 1
+
+[node name="Money" type="HBoxContainer" parent="ColorRect/Info/VBoxContainer"]
+margin_top = 18.0
+margin_right = 241.0
+margin_bottom = 32.0
+
+[node name="WindowLabel" type="Label" parent="ColorRect/Info/VBoxContainer/Money"]
+margin_right = 118.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Money:"
+align = 2
+
+[node name="Label" type="Label" parent="ColorRect/Info/VBoxContainer/Money"]
+margin_left = 122.0
+margin_right = 241.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "$10"
+
+[node name="Ship Level" type="HBoxContainer" parent="ColorRect/Info/VBoxContainer"]
+margin_top = 36.0
+margin_right = 241.0
+margin_bottom = 50.0
+
+[node name="WindowLabel" type="Label" parent="ColorRect/Info/VBoxContainer/Ship Level"]
+margin_right = 118.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Ship Level:"
+align = 2
+
+[node name="Label" type="Label" parent="ColorRect/Info/VBoxContainer/Ship Level"]
+margin_left = 122.0
+margin_right = 241.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "1"
+
+[node name="InventorySpace" type="HBoxContainer" parent="ColorRect/Info/VBoxContainer"]
+margin_top = 54.0
+margin_right = 241.0
+margin_bottom = 68.0
+
+[node name="WindowLabel" type="Label" parent="ColorRect/Info/VBoxContainer/InventorySpace"]
+margin_right = 118.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Inventory Space:"
+align = 2
+
+[node name="Label" type="Label" parent="ColorRect/Info/VBoxContainer/InventorySpace"]
+margin_left = 122.0
+margin_right = 241.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "0/30"
+
+[node name="Close" type="Button" parent="ColorRect/Info"]
+margin_top = 72.0
+margin_right = 241.0
+margin_bottom = 92.0
+size_flags_horizontal = 3
+text = "Close Menu"
+
+[connection signal="pressed" from="ColorRect/Info/Close" to="." method="_on_Close_pressed"]

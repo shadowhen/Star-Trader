@@ -24,6 +24,11 @@ config/name="Game 2"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameData="*res://Singletons/GameData.gd"
+PlayerData="*res://Singletons/PlayerData.gd"
+
 [display]
 
 window/size/width=1280

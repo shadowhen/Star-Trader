@@ -14,7 +14,7 @@ func _on_Planet_body_entered(body):
 	print("entering " + name)
 	PlayerData.player_stats["CurrentPlanet"]["Value"] = name
 	
-	var tradepanel = load("res://Trade.tscn").instance()
+	var tradepanel = load("res://trade/Trade.tscn").instance()
 	add_child(tradepanel)
 	get_node("Trade").connect("close_tradepanel", self, "close_tradepanel")
 	

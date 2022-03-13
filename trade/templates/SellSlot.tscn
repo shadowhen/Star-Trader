@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ItemTrade.gd" type="Script" id=1]
+[ext_resource path="res://trade/templates/ItemTrade.gd" type="Script" id=1]
 
 [node name="VBoxContainer" type="VBoxContainer"]
 margin_top = 44.0

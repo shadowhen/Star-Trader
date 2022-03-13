@@ -5,8 +5,8 @@ signal close_tradepanel
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var template_inv_slot = preload("res://Templates/SellSlot.tscn") # sell slot template
-var buy_slot = preload("res://Templates/BuySlot.tscn")
+var template_inv_slot = preload("res://trade/templates/SellSlot.tscn") # sell slot template
+var buy_slot = preload("res://trade/templates/BuySlot.tscn")
 
 onready var gridcontainer = get_node("ScrollContainer/ItemSellContainer")
 onready var buygridcontainer = get_node("Buy/BuyList/VBoxContainer")

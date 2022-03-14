@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player-ship-inventory-2.png-df4fee96ec728add3b1e9e0165a4f7be.stex"
+path="res://.import/wet_world.png-0f45fcb7d448c2bc242d20afbef19bff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/player-ship-inventory-2.png"
-dest_files=[ "res://.import/player-ship-inventory-2.png-df4fee96ec728add3b1e9e0165a4f7be.stex" ]
+source_file="res://planets/wet_world.png"
+dest_files=[ "res://.import/wet_world.png-0f45fcb7d448c2bc242d20afbef19bff.stex" ]
 
 [params]
 

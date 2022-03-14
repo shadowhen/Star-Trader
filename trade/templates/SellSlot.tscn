@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ItemTrade.gd" type="Script" id=1]
+[ext_resource path="res://trade/templates/ItemTrade.gd" type="Script" id=1]
 
 [node name="VBoxContainer" type="VBoxContainer"]
 margin_top = 44.0
@@ -27,6 +27,28 @@ margin_right = 833.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "5 Weeks"
+align = 1
+valign = 1
+
+[node name="InvSlotLabel" type="Label" parent="FoodTrade"]
+visible = false
+margin_left = 628.0
+margin_top = 3.0
+margin_right = 938.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "1"
+align = 1
+valign = 1
+
+[node name="ItemPriceLabel" type="Label" parent="FoodTrade"]
+visible = false
+margin_left = 628.0
+margin_top = 3.0
+margin_right = 938.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "1"
 align = 1
 valign = 1
 

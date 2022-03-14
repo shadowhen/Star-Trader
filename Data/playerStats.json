@@ -13,5 +13,8 @@
   },
   "CurrentPlanet": {
     "Value": 1
+  },
+  "InventorySpaceUsed": {
+    "Value": 7
   }
 }

@@ -30,6 +30,28 @@ text = "5 Weeks"
 align = 1
 valign = 1
 
+[node name="InvSlotLabel" type="Label" parent="FoodTrade"]
+visible = false
+margin_left = 628.0
+margin_top = 3.0
+margin_right = 938.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "1"
+align = 1
+valign = 1
+
+[node name="ItemPriceLabel" type="Label" parent="FoodTrade"]
+visible = false
+margin_left = 628.0
+margin_top = 3.0
+margin_right = 938.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "1"
+align = 1
+valign = 1
+
 [node name="Sell" type="Button" parent="FoodTrade"]
 margin_left = 837.0
 margin_right = 1252.0

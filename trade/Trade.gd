@@ -14,15 +14,9 @@ onready var buygridcontainer = get_node("Buy/BuyList/VBoxContainer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	get_parent().get_parent().get_node("Planet1").connect("planet_exited",self,"_planet_exited")
-	get_parent().get_parent().get_node("Planet2").connect("planet_exited",self,"_planet_exited")
-	get_parent().get_parent().get_node("Planet3").connect("planet_exited",self,"_planet_exited")
-	#get_parent().get_parent().get_node("Planet4").connect("planet_exited",self,"_planet_exited")
-	#get_parent().get_parent().get_node("Planet5").connect("planet_exited",self,"_planet_exited")
-	#get_parent().get_parent().get_node("Planet6").connect("planet_exited",self,"_planet_exited")
-	#get_parent().get_parent().get_node("Planet7").connect("planet_exited",self,"_planet_exited")
-	
+	setup()
+
+func setup():
 	var inventorySpaceUsed = 0
 	
 	# parse current Planet
@@ -73,6 +67,14 @@ func _ready() -> void:
 	get_node("ColorRect/Info/VBoxContainer/Money/Label").text = str(PlayerData.player_stats["Money"]["Value"])
 	get_node("ColorRect/Info/VBoxContainer/Time/Label").text = str(PlayerData.player_stats["TimeUsed"]["Value"]) + " Weeks Used, " + str(51 - PlayerData.player_stats["TimeUsed"]["Value"]) + " Remaining"
 
+func clean():
+	# Remove and queue free all children from the containers
+	for c in gridcontainer.get_children():
+		gridcontainer.remove_child(c)
+		c.queue_free()
+	for c in buygridcontainer.get_children():
+		buygridcontainer.remove_child(c)
+		c.queue_free()
 
 func _on_Close_pressed() -> void:
 	emit_signal("close_tradepanel")

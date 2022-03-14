@@ -14,9 +14,17 @@ onready var buygridcontainer = get_node("Buy/BuyList/VBoxContainer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	get_parent().get_parent().get_node("Planet1").connect("planet_exited",self,"_planet_exited")
+	get_parent().get_parent().get_node("Planet2").connect("planet_exited",self,"_planet_exited")
+	get_parent().get_parent().get_node("Planet3").connect("planet_exited",self,"_planet_exited")
+	#get_parent().get_parent().get_node("Planet4").connect("planet_exited",self,"_planet_exited")
+	#get_parent().get_parent().get_node("Planet5").connect("planet_exited",self,"_planet_exited")
+	#get_parent().get_parent().get_node("Planet6").connect("planet_exited",self,"_planet_exited")
+	#get_parent().get_parent().get_node("Planet7").connect("planet_exited",self,"_planet_exited")
+	
 	var inventorySpaceUsed = 0
-		
-		
+	
 	# parse current Planet
 	var currentPlanet = str(PlayerData.player_stats["CurrentPlanet"]["Value"])
 	if (currentPlanet == "Planet1"):
@@ -42,6 +50,8 @@ func _ready() -> void:
 			inventorySpaceUsed += 1
 			var inv_slot_new = template_inv_slot.instance()
 			inv_slot_new.get_node("FoodTrade/ItemLabel").text =  str(GameData.item_data[str(itemID)]["ItemName"])
+			inv_slot_new.get_node("FoodTrade/ItemPriceLabel").text =  str(GameData.item_data[str(itemID)]["ItemP" + currentPlanet + "SellFor"])
+			inv_slot_new.get_node("FoodTrade/InvSlotLabel").text =  str(i)
 			inv_slot_new.get_node("FoodTrade/ItemDate").text =  str(PlayerData.inv_data[i]["WeekAquired"])
 			inv_slot_new.get_node("FoodTrade/Sell").text = "Sell for $" + str(GameData.item_data[str(itemID)]["ItemP" + currentPlanet + "SellFor"])
 			
@@ -65,5 +75,9 @@ func _ready() -> void:
 
 
 func _on_Close_pressed() -> void:
+	emit_signal("close_tradepanel")
+	pass # Replace with function body.
+	
+func _planet_exited() -> void: # close trade panel when leaving planet
 	emit_signal("close_tradepanel")
 	pass # Replace with function body.

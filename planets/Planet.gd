@@ -1,6 +1,7 @@
 extends Area2D
 
 signal click_move(new_position)
+signal planet_exited()
 
 func _on_Planet_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("move"):
@@ -29,3 +30,5 @@ func _on_Planet_body_exited(body):
 	body.interact_planet = false
 	print("leaving " + name)
 	PlayerData.player_stats["CurrentPlanet"]["Value"] = "-1"
+	
+	emit_signal("planet_exited")

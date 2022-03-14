@@ -1,10 +1,6 @@
 extends KinematicBody2D
 
-export var current_balance : int = 100
-
 var move_pressed = false
-
-var interact_planet = false
 
 # movement variables
 var destination = Vector2()
@@ -23,10 +19,6 @@ func _ready():
 	var trades = get_tree().get_nodes_in_group("trade")
 	for trade in trades:
 		trade.connect("trade_amount", self, "_conduct_trade")
-
-func _unhandled_input(event):
-	if interact_planet and event.is_action_pressed("trade"):
-		$"../GUI/Trade/".visible = not $"../GUI/Trade/".visible
 
 # Updates the ships destination
 func _update_destination(target_position):
@@ -51,34 +43,3 @@ func _movement_loop(delta):
 		velocity = move_and_slide(velocity)
 	else:
 		is_moving = false
-	
-func _conduct_trade(cargo_type, currency, amount):
-	#print("traded %d for %s" % [amount, ItemTrade.get_cargo_str(cargo_type)])
-	
-	# Calculate new balance
-	current_balance += currency
-	print("Current balance: %d" % current_balance)
-
-# This function implements both ship upgrades.  
-func _ship_upgrade(current_balance, current_ship_upgrade):
-	# Logic for first upgrade. 
-	if current_ship_upgrade == 0:
-		if current_balance < 500:
-			print("You do not have enough credits to redeem your first upgrade. ")
-		else:
-			current_ship_upgrade += 1
-			current_balance = current_balance - 500
-			print("Your ship has been successfully upgraded! ")
-
-	# Logic for second upgrade.
-	elif current_ship_upgrade == 1:
-		if current_balance < 3000:
-			print("You do not have enough credits to redeem your second upgrade. ")
-		else:
-			current_ship_upgrade += 1
-			current_balance = current_balance - 3000
-			print("Your ship has been successfully upgraded! ")
-
-	# Fully Upgraded.
-	else:
-		print("Your ship is fully upgraded traveler! ")

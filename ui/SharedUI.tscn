@@ -43,4 +43,5 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[connection signal="upgrade" from="Tabs/Upgrade" to="." method="_on_Upgrade_upgrade"]
 [connection signal="pressed" from="HideButton" to="." method="_on_HideButton_pressed"]

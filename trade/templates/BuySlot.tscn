@@ -1,13 +1,36 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://trade/templates/BuyItem.gd" type="Script" id=1]
 
 [node name="FoodTrade" type="HBoxContainer" groups=["trade"]]
 margin_right = 735.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 735, 0 )
+script = ExtResource( 1 )
 
 [node name="ItemLabel" type="Label" parent="."]
 margin_top = 3.0
 margin_right = 180.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Food"
+valign = 1
+
+[node name="ItemID" type="Label" parent="."]
+visible = false
+margin_left = 147.0
+margin_top = 3.0
+margin_right = 291.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Food"
+valign = 1
+
+[node name="PlanetID" type="Label" parent="."]
+visible = false
+margin_left = 147.0
+margin_top = 3.0
+margin_right = 291.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 text = "Food"

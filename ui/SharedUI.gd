@@ -15,6 +15,7 @@ func set_cash(cash : int):
 
 
 func _on_HideButton_pressed():
+	update_info()
 	hide()
 
 

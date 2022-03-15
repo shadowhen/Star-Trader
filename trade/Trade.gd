@@ -58,7 +58,8 @@ func setup():
 			buy_slot_new.get_node("ItemLabel").text = str(GameData.item_data[str(i)]["ItemName"])
 			buy_slot_new.get_node("Available").text = str(GameData.planet_inventory[str(i)]["P" + currentPlanet + "Avail"])
 			buy_slot_new.get_node("Price").text = str(GameData.item_data[str(i)]["ItemP" + currentPlanet + "BuyFor"])
-
+			buy_slot_new.get_node("ItemID").text = str(i)
+			buy_slot_new.get_node("PlanetID").text = "P" + currentPlanet + "Avail"
 			buygridcontainer.add_child(buy_slot_new, true)
 
 	# set the player stats in the small window above the trade window

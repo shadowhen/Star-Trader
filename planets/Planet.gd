@@ -13,11 +13,11 @@ func _on_Planet_body_entered(body):
 		return
 	print("entering " + name)
 	PlayerData.player_stats["CurrentPlanet"]["Value"] = name
-	
+
 #	var tradepanel = load("res://trade/Trade.tscn").instance()
 #	add_child(tradepanel)
 #	get_node("Trade").connect("close_tradepanel", self, "close_tradepanel")
-	
+
 	emit_signal("player_enter")
 
 
@@ -26,5 +26,4 @@ func _on_Planet_body_exited(body):
 		return
 	print("leaving " + name)
 	PlayerData.player_stats["CurrentPlanet"]["Value"] = "-1"
-	
 	emit_signal("player_exit")

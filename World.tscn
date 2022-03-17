@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://space-background.png" type="Texture" id=2]
@@ -6,8 +6,12 @@
 [ext_resource path="res://planets/Planet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Game.gd" type="Script" id=5]
 [ext_resource path="res://player/PlayerCamera.gd" type="Script" id=6]
-[ext_resource path="res://planets/wet_world.png" type="Texture" id=7]
-[ext_resource path="res://planets/ice_world.png" type="Texture" id=8]
+[ext_resource path="res://planets/art/wet_world.png" type="Texture" id=7]
+[ext_resource path="res://planets/art/ice_world.png" type="Texture" id=8]
+[ext_resource path="res://planets/art/lava_world.png" type="Texture" id=9]
+[ext_resource path="res://planets/art/red_gas_giant_world.png" type="Texture" id=10]
+[ext_resource path="res://planets/art/dry_world.png" type="Texture" id=11]
+[ext_resource path="res://planets/art/strange_world.png" type="Texture" id=12]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -15,6 +19,7 @@ script = ExtResource( 5 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
 motion_mirroring = Vector2( 1000, 1000 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
@@ -37,19 +42,43 @@ move_speed = 200.0
 [node name="Planets" type="Node" parent="."]
 
 [node name="Planet1" parent="Planets" instance=ExtResource( 4 )]
-position = Vector2( -260, -47 )
+position = Vector2( -163, -94 )
 
 [node name="Planet2" parent="Planets" instance=ExtResource( 4 )]
-position = Vector2( 218, -125 )
+position = Vector2( 290, -300 )
 
 [node name="Sprite" parent="Planets/Planet2" index="0"]
 texture = ExtResource( 7 )
 
-[node name="Planet3" parent="Planets" instance=ExtResource( 4 )]
-position = Vector2( 173, 148 )
+[node name="Planet3" parent="Planets/Planet2" instance=ExtResource( 4 )]
+position = Vector2( -24, 480 )
 
-[node name="Sprite" parent="Planets/Planet3" index="0"]
+[node name="Sprite" parent="Planets/Planet2/Planet3" index="0"]
 texture = ExtResource( 8 )
+
+[node name="Planet4" parent="Planets" instance=ExtResource( 4 )]
+position = Vector2( -94, 256 )
+
+[node name="Sprite" parent="Planets/Planet4" index="0"]
+texture = ExtResource( 9 )
+
+[node name="Planet5" parent="Planets" instance=ExtResource( 4 )]
+position = Vector2( -234, -298 )
+
+[node name="Sprite" parent="Planets/Planet5" index="0"]
+texture = ExtResource( 12 )
+
+[node name="Planet6" parent="Planets" instance=ExtResource( 4 )]
+position = Vector2( 316, -105 )
+
+[node name="Sprite" parent="Planets/Planet6" index="0"]
+texture = ExtResource( 10 )
+
+[node name="Planet7" parent="Planets" instance=ExtResource( 4 )]
+position = Vector2( -445, 121 )
+
+[node name="Sprite" parent="Planets/Planet7" index="0"]
+texture = ExtResource( 11 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -59,4 +88,8 @@ visible = false
 [connection signal="upgrade_ship" from="GUI/SharedUI" to="." method="_upgrade_ship"]
 
 [editable path="Planets/Planet2"]
-[editable path="Planets/Planet3"]
+[editable path="Planets/Planet2/Planet3"]
+[editable path="Planets/Planet4"]
+[editable path="Planets/Planet5"]
+[editable path="Planets/Planet6"]
+[editable path="Planets/Planet7"]

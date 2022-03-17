@@ -19,6 +19,7 @@ script = ExtResource( 5 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
 motion_mirroring = Vector2( 1000, 1000 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
@@ -49,10 +50,10 @@ position = Vector2( 290, -300 )
 [node name="Sprite" parent="Planets/Planet2" index="0"]
 texture = ExtResource( 7 )
 
-[node name="Planet3" parent="Planets" instance=ExtResource( 4 )]
-position = Vector2( 266, 180 )
+[node name="Planet3" parent="Planets/Planet2" instance=ExtResource( 4 )]
+position = Vector2( -24, 480 )
 
-[node name="Sprite" parent="Planets/Planet3" index="0"]
+[node name="Sprite" parent="Planets/Planet2/Planet3" index="0"]
 texture = ExtResource( 8 )
 
 [node name="Planet4" parent="Planets" instance=ExtResource( 4 )]
@@ -87,7 +88,7 @@ visible = false
 [connection signal="upgrade_ship" from="GUI/SharedUI" to="." method="_upgrade_ship"]
 
 [editable path="Planets/Planet2"]
-[editable path="Planets/Planet3"]
+[editable path="Planets/Planet2/Planet3"]
 [editable path="Planets/Planet4"]
 [editable path="Planets/Planet5"]
 [editable path="Planets/Planet6"]

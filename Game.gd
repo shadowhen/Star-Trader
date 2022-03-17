@@ -4,8 +4,10 @@ enum GameState { TRAVEL, DOCKED, WINNER, LOSER }
 var game_state = GameState.TRAVEL
 
 onready var shared_ui = $GUI/SharedUI
+onready var week_timer = $WeekTimer
 
 export(int) var player_cash_balance = 100
+export(int) var weeks_left = 52
 
 # These variables are used to upgrade the ship. 
 onready var bullet_sprite = get_node("Player/Sprite")
@@ -33,10 +35,16 @@ func _on_Planet_player_enter():
 	game_state = GameState.DOCKED
 	shared_ui.show()
 	shared_ui.update_info()
+	week_timer.paused = true
 	
 func _on_Planet_player_exit():
 	game_state = GameState.TRAVEL
 	shared_ui.hide()
+	
+	# Starts timer if it has not started yet
+	if week_timer.is_stopped():
+		week_timer.start()
+	week_timer.paused = false
 
 # This function implements both ship upgrades and visual ship upgrades.  
 func _upgrade_ship():
@@ -69,3 +77,12 @@ func _upgrade_ship():
 	# Fully Upgraded.
 	else:
 		print("Your ship is fully upgraded traveler! ")
+
+func _on_WeekTimer_timeout():
+	weeks_left -= 1
+	if weeks_left <= 0:
+		game_over()
+
+# Declares the game to be game over
+func game_over():
+	print("All weeks are exhausted")

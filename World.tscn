@@ -85,7 +85,10 @@ texture = ExtResource( 11 )
 [node name="SharedUI" parent="GUI" instance=ExtResource( 3 )]
 visible = false
 
+[node name="WeekTimer" type="Timer" parent="."]
+
 [connection signal="upgrade_ship" from="GUI/SharedUI" to="." method="_upgrade_ship"]
+[connection signal="timeout" from="WeekTimer" to="." method="_on_WeekTimer_timeout"]
 
 [editable path="Planets/Planet2"]
 [editable path="Planets/Planet2/Planet3"]

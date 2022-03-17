@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ice_world.png-71408610a1864a6c953df92a828a5907.stex"
+path="res://.import/lava_world.png-69009f7df89a118e03000f4f682d47e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/ice_world.png"
-dest_files=[ "res://.import/ice_world.png-71408610a1864a6c953df92a828a5907.stex" ]
+source_file="res://planets/art/lava_world.png"
+dest_files=[ "res://.import/lava_world.png-69009f7df89a118e03000f4f682d47e8.stex" ]
 
 [params]
 

@@ -5,6 +5,7 @@ var game_state = GameState.TRAVEL
 
 onready var shared_ui = $GUI/SharedUI
 onready var week_timer = $WeekTimer
+onready var clock = $GUI/Clock
 
 export(int) var player_cash_balance = 100
 export(int) var weeks_left = 52
@@ -27,6 +28,10 @@ func _ready():
 		elif player_ship_level == 2:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
 
+func _process(delta):
+	# Updates the radial value of the ui clock
+	clock.value = week_timer.wait_time - week_timer.time_left
+
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
 		shared_ui.visible = not shared_ui.visible
@@ -35,6 +40,8 @@ func _on_Planet_player_enter():
 	game_state = GameState.DOCKED
 	shared_ui.show()
 	shared_ui.update_info()
+	
+	# Pause the game timer
 	week_timer.paused = true
 	
 func _on_Planet_player_exit():
@@ -44,6 +51,8 @@ func _on_Planet_player_exit():
 	# Starts timer if it has not started yet
 	if week_timer.is_stopped():
 		week_timer.start()
+	
+	# Unpause the game timer
 	week_timer.paused = false
 
 # This function implements both ship upgrades and visual ship upgrades.  
@@ -78,8 +87,12 @@ func _upgrade_ship():
 	else:
 		print("Your ship is fully upgraded traveler! ")
 
+# Signal function for WeekTimer's timeout
 func _on_WeekTimer_timeout():
+	# Countdown the number of weeks left
 	weeks_left -= 1
+	
+	# Ends the game when time runs out completely
 	if weeks_left <= 0:
 		game_over()
 

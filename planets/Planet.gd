@@ -26,5 +26,4 @@ func _on_Planet_body_exited(body):
 		return
 	print("leaving " + name)
 	PlayerData.player_stats["CurrentPlanet"]["Value"] = "-1"
-
 	emit_signal("player_exit")

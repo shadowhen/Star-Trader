@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sea_world.png-abf18d3a4e2588338bce2c6c0d3270dc.stex"
+path="res://.import/clock_under.png-cdf953ca07f7a768bd18dc31784a7d55.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/sea_world.png"
-dest_files=[ "res://.import/sea_world.png-abf18d3a4e2588338bce2c6c0d3270dc.stex" ]
+source_file="res://ui/clock/clock_under.png"
+dest_files=[ "res://.import/clock_under.png-cdf953ca07f7a768bd18dc31784a7d55.stex" ]
 
 [params]
 

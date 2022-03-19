@@ -36,6 +36,10 @@ func setup():
 	elif (currentPlanet == "Planet7"):
 		currentPlanet = "7"
 
+
+	# temp
+	get_node("Buy/Top/DateLabelTemp").text = str(PlayerData.player_stats["TimeUsed"]["Value"])
+	
 	# set up sell slots
 	for i in PlayerData.inv_data.keys():
 		var itemID = PlayerData.inv_data[i]["InvItemID"]
@@ -44,10 +48,23 @@ func setup():
 			inventorySpaceUsed += 1
 			var inv_slot_new = template_inv_slot.instance()
 			inv_slot_new.get_node("FoodTrade/ItemLabel").text =  str(GameData.item_data[str(itemID)]["ItemName"])
-			inv_slot_new.get_node("FoodTrade/ItemPriceLabel").text =  str(GameData.item_data[str(itemID)]["ItemP" + currentPlanet + "SellFor"])
 			inv_slot_new.get_node("FoodTrade/InvSlotLabel").text =  str(i)
 			inv_slot_new.get_node("FoodTrade/ItemDate").text =  str(PlayerData.inv_data[i]["WeekAquired"])
-			inv_slot_new.get_node("FoodTrade/Sell").text = "Sell for $" + str(GameData.item_data[str(itemID)]["ItemP" + currentPlanet + "SellFor"])
+			
+			# set prices
+			var oldPrice = int(GameData.item_data[str(itemID)]["ItemP" + currentPlanet + "SellFor"])
+			var perishableValue = int(GameData.item_data[str(itemID)]["ItemPerishable"]) # remove this * num weeks in cargo from value
+			var currentDate = int(PlayerData.player_stats["TimeUsed"]["Value"])
+			var itemPurchaseDate = int(PlayerData.inv_data[str(i)]["WeekAquired"])
+			var timeInInventory = currentDate - itemPurchaseDate
+			var newPrice = oldPrice - (perishableValue * timeInInventory)
+			
+			# if new price is negative then make 0 instead
+			if (newPrice < 0):
+				newPrice = 0
+			
+			inv_slot_new.get_node("FoodTrade/ItemPriceLabel").text =  str(newPrice)
+			inv_slot_new.get_node("FoodTrade/Sell").text = "Sell for $" + str(newPrice)
 
 			gridcontainer.add_child(inv_slot_new, true)
 
@@ -66,7 +83,7 @@ func setup():
 	get_node("ColorRect/Info/VBoxContainer/InventorySpace/Label").text = str(inventorySpaceUsed) + " / " + str(PlayerData.player_stats["InventoryCap"]["Value"])
 	get_node("ColorRect/Info/VBoxContainer/Ship Level/Label").text = str(PlayerData.player_stats["ShipLvl"]["Value"])
 	get_node("ColorRect/Info/VBoxContainer/Money/Label").text = str(PlayerData.player_stats["Money"]["Value"])
-	get_node("ColorRect/Info/VBoxContainer/Time/Label").text = str(PlayerData.player_stats["TimeUsed"]["Value"]) + " Weeks Used, " + str(51 - PlayerData.player_stats["TimeUsed"]["Value"]) + " Remaining"
+	get_node("ColorRect/Info/VBoxContainer/Time/Label").text = str(PlayerData.player_stats["TimeUsed"]["Value"]) + " Weeks Used, " + str(52 - PlayerData.player_stats["TimeUsed"]["Value"]) + " Remaining"
 
 func clean():
 	# Remove and queue free all children from the containers

@@ -43,6 +43,7 @@ func _on_Planet_player_enter():
 	
 	# Pause the game timer
 	week_timer.paused = true
+	PlayerData.player_stats["TimeUsed"]["Value"] = clock.value
 	
 func _on_Planet_player_exit():
 	game_state = GameState.TRAVEL

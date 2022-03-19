@@ -8,6 +8,7 @@ var player_stats = {}
 
 var job_log = []
 var money setget set_money, get_money
+var time_used setget set_time_used, get_time_used
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,12 +26,18 @@ func _ready():
 	stats_data_file.close()
 	player_stats = stats_data_json.result
 
-func set_money(p_money) -> void:
+func set_money(p_money : int) -> void:
 	PlayerData.player_stats["Money"]["Value"] = p_money
 	emit_signal("money_update", p_money)
 
 func get_money() -> int:
-	return PlayerData.player_stats["Money"]["Value"]
+	return int(PlayerData.player_stats["Money"]["Value"])
+
+func set_time_used(p_time_used : int) -> void:
+	PlayerData.player_stats["TimeUsed"]["Value"] = p_time_used
+
+func get_time_used() -> int:
+	return int(PlayerData.player_stats["TimeUsed"]["Value"])
 
 func remove_job(job : Job):
 	if job_log.has(job):

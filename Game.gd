@@ -7,7 +7,7 @@ onready var shared_ui = $GUI/SharedUI
 onready var week_timer = $WeekTimer
 onready var clock = $GUI/Clock
 
-export(int) var player_cash_balance = 100
+export(int) var money_win = 1000
 export(int) var weeks_left = 52
 export(PackedScene) var popup_template
 
@@ -25,7 +25,7 @@ func _ready():
 	for planet in get_tree().get_nodes_in_group("planets"):
 		planet.connect("player_enter", self, "_on_Planet_player_enter")
 		planet.connect("player_exit", self, "_on_Planet_player_exit")
-		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Credits: " + str(player_cash_balance)
+		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Credits: " + str(PlayerData.money)
 		
 		if player_ship_level == 1:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +3. 300 monies. "
@@ -59,7 +59,7 @@ func _process(delta):
 		clock.value = 0
 	else:
 		# Updates the radial value of the ui clock
-		clock.value = week_timer.wait_time - week_timer.time_left
+		clock.value = PlayerData.time_used
 
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
@@ -98,26 +98,26 @@ func _on_Planet_player_exit(planet):
 func _upgrade_ship():
 	# Logic for first upgrade.
 	if player_ship_level == 1:
-		if player_cash_balance < 300:
+		if PlayerData.money < 300:
 			print("You do not have enough credits to redeem your first upgrade. ")
 		else:
 			player_ship_level = 2
 			PlayerData.player_stats["ShipLvl"]["Value"] = 2
 			PlayerData.player_stats["InventoryCap"]["Value"] = 13
-			player_cash_balance = player_cash_balance - 300
+			PlayerData.money -= 300
 			bullet_sprite.set_texture(player_tex1)
 			panel_sprite.set_texture(player_tex1)
 			print("You've acquired '1st Upgrade'! ")
 
 	# Logic for second upgrade.
 	elif player_ship_level == 2:
-		if player_cash_balance < 800:
+		if PlayerData.money < 800:
 			print("You do not have enough credits to redeem your second upgrade. ")
 		else:
 			player_ship_level = 3
 			PlayerData.player_stats["ShipLvl"]["Value"] = 3
 			PlayerData.player_stats["InventoryCap"]["Value"] = 17
-			player_cash_balance = player_cash_balance - 800
+			PlayerData.money -= 800
 			bullet_sprite.set_texture(player_tex2)
 			panel_sprite.set_texture(player_tex2)
 			print("You've acquired '2nd Upgrade'! ")
@@ -129,15 +129,21 @@ func _upgrade_ship():
 # Signal function for WeekTimer's timeout
 func _on_WeekTimer_timeout():
 	# Countdown the number of weeks left
-	weeks_left -= 1
+	#weeks_left -= 1
+	PlayerData.time_used += 1
 	
 	# Ends the game when time runs out completely
-	if weeks_left <= 0:
+	if PlayerData.time_used >= weeks_left:
 		game_over()
 
 # Declares the game to be game over
 func game_over():
 	print("All weeks are exhausted")
+	
+	if PlayerData.money >= money_win:
+		game_state = GameState.WINNER
+	else:
+		game_state = GameState.LOSER
 
 func _on_PlayerData_job_removed(job):
 	var temp = popup_template.instance()

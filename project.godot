@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Job",
+"language": "GDScript",
+"path": "res://planets/Job.gd"
+} ]
+_global_script_class_icons={
+"Job": ""
+}
+
 [application]
 
 config/name="Game 2"

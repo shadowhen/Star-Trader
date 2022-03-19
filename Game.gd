@@ -9,6 +9,7 @@ onready var clock = $GUI/Clock
 
 export(int) var player_cash_balance = 100
 export(int) var weeks_left = 52
+export(PackedScene) var popup_template
 
 # These variables are used to upgrade the ship. 
 onready var bullet_sprite = get_node("Player/Sprite")
@@ -18,6 +19,9 @@ var player_tex1 = preload("res://player/player-ship-inventory-1.png")
 var player_tex2 = preload("res://player/player-ship-inventory-2.png")
 
 func _ready():
+	# Randomize seed for random generated jobs
+	randomize()
+	
 	for planet in get_tree().get_nodes_in_group("planets"):
 		planet.connect("player_enter", self, "_on_Planet_player_enter")
 		planet.connect("player_exit", self, "_on_Planet_player_exit")
@@ -27,6 +31,28 @@ func _ready():
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +3. 300 monies. "
 		elif player_ship_level == 2:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
+		
+		# Randomize number of jobs for each planet
+		var num_jobs = randi() % 3
+		for i in range(num_jobs):
+			var reward = 10 + randi() % 41
+			var cargo_space = 1 + randi() % 10
+			var destination = randomize_planet(planet)
+			var created_job = Job.new(reward, cargo_space, destination)
+			planet.available_jobs.push_back(created_job)
+	
+	PlayerData.connect("job_removed", self, "_on_PlayerData_job_removed")
+
+# Randomize planet that is not the origin
+func randomize_planet(origin):
+	var planets = get_tree().get_nodes_in_group("planets")
+	
+	# Loop until we find a planet that is not the origin
+	while true:
+		# Randomly pick a planet
+		var temp = planets[randi() % len(planets)]
+		if temp != origin:
+			return temp
 
 func _process(delta):
 	if week_timer.is_stopped():
@@ -39,16 +65,25 @@ func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
 		shared_ui.visible = not shared_ui.visible
 
-func _on_Planet_player_enter():
+func _on_Planet_player_enter(planet):
 	game_state = GameState.DOCKED
+	
 	shared_ui.show()
-	shared_ui.update_info()
+	shared_ui.update_info(planet)
+	
+	var complete_jobs = []
+	for job in PlayerData.job_log:
+		if job.destination == planet:
+			complete_jobs.push_back(job)
+	for job in complete_jobs:
+		PlayerData.remove_job(job)
+		job.queue_free()
 	
 	# Pause the game timer
 	week_timer.paused = true
 	PlayerData.player_stats["TimeUsed"]["Value"] = clock.value
-	
-func _on_Planet_player_exit():
+
+func _on_Planet_player_exit(planet):
 	game_state = GameState.TRAVEL
 	shared_ui.hide()
 	
@@ -103,3 +138,12 @@ func _on_WeekTimer_timeout():
 # Declares the game to be game over
 func game_over():
 	print("All weeks are exhausted")
+
+func _on_PlayerData_job_removed(job):
+	var temp = popup_template.instance()
+	print(temp)
+	
+	var desc = "Job Complete\nDeliver %s cargo to %s\nReward: %s monies"
+	var desc_args = [job.cargo_space, job.destination.planet_name, job.money_reward]
+	$GUI.add_child(temp)
+	temp.description.text = desc % desc_args

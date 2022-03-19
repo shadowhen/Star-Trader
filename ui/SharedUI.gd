@@ -4,8 +4,11 @@ signal upgrade_ship
 
 onready var trade = $Tabs/Trade
 onready var upgrade = $Tabs/Upgrade
+onready var jobs = $Tabs/Jobs
 
-func update_info():
+func update_info(planet):
+	jobs.setup(planet)
+	
 	trade.clean()
 	trade.setup()
 
@@ -15,7 +18,7 @@ func set_cash(cash : int):
 
 
 func _on_HideButton_pressed():
-	update_info()
+	#update_info()
 	hide()
 
 

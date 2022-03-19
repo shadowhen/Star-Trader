@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://space-background.png" type="Texture" id=2]
@@ -13,9 +13,11 @@
 [ext_resource path="res://planets/art/dry_world.png" type="Texture" id=11]
 [ext_resource path="res://planets/art/strange_world.png" type="Texture" id=12]
 [ext_resource path="res://ui/clock/Clock.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ui/jobs/CompleteJobPopup.tscn" type="PackedScene" id=14]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
+popup_template = ExtResource( 14 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -44,42 +46,67 @@ move_speed = 200.0
 
 [node name="Planet1" parent="Planets" instance=ExtResource( 4 )]
 position = Vector2( -163, -94 )
+planet_name = "Seasal"
 
 [node name="Planet2" parent="Planets" instance=ExtResource( 4 )]
 position = Vector2( 290, -300 )
+planet_name = "Terra"
 
 [node name="Sprite" parent="Planets/Planet2" index="0"]
 texture = ExtResource( 7 )
 
-[node name="Planet3" parent="Planets/Planet2" instance=ExtResource( 4 )]
-position = Vector2( -24, 480 )
+[node name="PlanetLabel" parent="Planets/Planet2" index="3"]
+text = "Terra"
 
-[node name="Sprite" parent="Planets/Planet2/Planet3" index="0"]
+[node name="Planet3" parent="Planets" instance=ExtResource( 4 )]
+position = Vector2( 266, 180 )
+planet_name = "Glacier"
+
+[node name="Sprite" parent="Planets/Planet3" index="0"]
 texture = ExtResource( 8 )
+
+[node name="PlanetLabel" parent="Planets/Planet3" index="3"]
+text = "Glacier"
 
 [node name="Planet4" parent="Planets" instance=ExtResource( 4 )]
 position = Vector2( -94, 256 )
+planet_name = "Vera"
 
 [node name="Sprite" parent="Planets/Planet4" index="0"]
 texture = ExtResource( 9 )
 
+[node name="PlanetLabel" parent="Planets/Planet4" index="3"]
+text = "Vera"
+
 [node name="Planet5" parent="Planets" instance=ExtResource( 4 )]
 position = Vector2( -234, -298 )
+planet_name = "Centauri"
 
 [node name="Sprite" parent="Planets/Planet5" index="0"]
 texture = ExtResource( 12 )
 
+[node name="PlanetLabel" parent="Planets/Planet5" index="3"]
+text = "Centauri"
+
 [node name="Planet6" parent="Planets" instance=ExtResource( 4 )]
 position = Vector2( 316, -105 )
+planet_name = "Placid"
 
 [node name="Sprite" parent="Planets/Planet6" index="0"]
 texture = ExtResource( 10 )
 
+[node name="PlanetLabel" parent="Planets/Planet6" index="3"]
+text = "Placid"
+
 [node name="Planet7" parent="Planets" instance=ExtResource( 4 )]
 position = Vector2( -445, 121 )
+planet_name = "Zero"
 
 [node name="Sprite" parent="Planets/Planet7" index="0"]
 texture = ExtResource( 11 )
+
+[node name="PlanetLabel" parent="Planets/Planet7" index="3"]
+text = "Zero"
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -102,7 +129,7 @@ wait_time = 60.0
 [connection signal="timeout" from="WeekTimer" to="." method="_on_WeekTimer_timeout"]
 
 [editable path="Planets/Planet2"]
-[editable path="Planets/Planet2/Planet3"]
+[editable path="Planets/Planet3"]
 [editable path="Planets/Planet4"]
 [editable path="Planets/Planet5"]
 [editable path="Planets/Planet6"]

@@ -1,7 +1,12 @@
 extends Node
 
+signal job_removed(job)
+
 var inv_data = {}
 var player_stats = {}
+
+var job_log = []
+var money setget set_money, get_money
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,11 +23,14 @@ func _ready():
 	var stats_data_json = JSON.parse(stats_data_file.get_as_text())
 	stats_data_file.close()
 	player_stats = stats_data_json.result
-	
-	
-	
 
+func set_money(p_money) -> void:
+	PlayerData.player_stats["Money"]["Value"] = p_money
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func get_money() -> int:
+	return PlayerData.player_stats["Money"]["Value"]
+
+func remove_job(job : Job):
+	if job_log.has(job):
+		job_log.erase(job)
+		emit_signal("job_removed", job)

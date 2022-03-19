@@ -29,8 +29,11 @@ func _ready():
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
 
 func _process(delta):
-	# Updates the radial value of the ui clock
-	clock.value = week_timer.wait_time - week_timer.time_left
+	if week_timer.is_stopped():
+		clock.value = 0
+	else:
+		# Updates the radial value of the ui clock
+		clock.value = week_timer.wait_time - week_timer.time_left
 
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:

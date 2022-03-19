@@ -4,8 +4,11 @@ enum GameState { TRAVEL, DOCKED, WINNER, LOSER }
 var game_state = GameState.TRAVEL
 
 onready var shared_ui = $GUI/SharedUI
+onready var week_timer = $WeekTimer
+onready var clock = $GUI/Clock
 
 export(int) var player_cash_balance = 100
+export(int) var weeks_left = 52
 
 # These variables are used to upgrade the ship. 
 onready var bullet_sprite = get_node("Player/Sprite")
@@ -18,12 +21,16 @@ func _ready():
 	for planet in get_tree().get_nodes_in_group("planets"):
 		planet.connect("player_enter", self, "_on_Planet_player_enter")
 		planet.connect("player_exit", self, "_on_Planet_player_exit")
-		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Credits: " + str(player_cash_balance)
+		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 		
 		if player_ship_level == 1:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +3. 300 monies. "
 		elif player_ship_level == 2:
-			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 2: Inventory +5. 800 monies. "
+
+func _process(delta):
+	# Updates the radial value of the ui clock
+	clock.value = week_timer.wait_time - week_timer.time_left
 
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
@@ -34,9 +41,20 @@ func _on_Planet_player_enter():
 	shared_ui.show()
 	shared_ui.update_info()
 	
+	# Pause the game timer
+	week_timer.paused = true
+	PlayerData.player_stats["TimeUsed"]["Value"] = clock.value
+	
 func _on_Planet_player_exit():
 	game_state = GameState.TRAVEL
 	shared_ui.hide()
+	
+	# Starts timer if it has not started yet
+	if week_timer.is_stopped():
+		week_timer.start()
+	
+	# Unpause the game timer
+	week_timer.paused = false
 
 # This function implements both ship upgrades and visual ship upgrades.  
 func _upgrade_ship():
@@ -69,3 +87,16 @@ func _upgrade_ship():
 	# Fully Upgraded.
 	else:
 		print("Your ship is fully upgraded traveler! ")
+
+# Signal function for WeekTimer's timeout
+func _on_WeekTimer_timeout():
+	# Countdown the number of weeks left
+	weeks_left -= 1
+	
+	# Ends the game when time runs out completely
+	if weeks_left <= 0:
+		game_over()
+
+# Declares the game to be game over
+func game_over():
+	print("All weeks are exhausted")

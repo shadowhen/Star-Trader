@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/clock/clock_under.png" type="Texture" id=2]
+[ext_resource path="res://ui/clock/clock_fill.png" type="Texture" id=3]
+
+[node name="Clock" type="TextureProgress"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1180.0
+margin_bottom = -620.0
+max_value = 60.0
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+fill_mode = 4
+nine_patch_stretch = true

@@ -60,26 +60,30 @@ func _on_Planet_player_exit():
 func _upgrade_ship():
 	# Logic for first upgrade.
 	if player_ship_level == 1:
-		if player_cash_balance < 300:
+		if PlayerData.player_stats["Money"]["Value"] < 30:
 			print("You do not have enough credits to redeem your first upgrade. ")
 		else:
 			player_ship_level = 2
 			PlayerData.player_stats["ShipLvl"]["Value"] = 2
 			PlayerData.player_stats["InventoryCap"]["Value"] = 13
-			player_cash_balance = player_cash_balance - 300
+			PlayerData.player_stats["Money"]["Value"] = PlayerData.player_stats["Money"]["Value"] - 30
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 2: Inventory +5. 800 monies. "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 			bullet_sprite.set_texture(player_tex1)
 			panel_sprite.set_texture(player_tex1)
 			print("You've acquired '1st Upgrade'! ")
 
 	# Logic for second upgrade.
 	elif player_ship_level == 2:
-		if player_cash_balance < 800:
+		if PlayerData.player_stats["Money"]["Value"] < 20:
 			print("You do not have enough credits to redeem your second upgrade. ")
 		else:
 			player_ship_level = 3
 			PlayerData.player_stats["ShipLvl"]["Value"] = 3
 			PlayerData.player_stats["InventoryCap"]["Value"] = 17
-			player_cash_balance = player_cash_balance - 800
+			PlayerData.player_stats["Money"]["Value"] = PlayerData.player_stats["Money"]["Value"] - 20
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Fully Upgraded! "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 			bullet_sprite.set_texture(player_tex2)
 			panel_sprite.set_texture(player_tex2)
 			print("You've acquired '2nd Upgrade'! ")

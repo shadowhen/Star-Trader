@@ -11,6 +11,7 @@ margin_left = -386.0
 margin_top = -175.0
 margin_right = 414.0
 margin_bottom = 207.0
+rect_min_size = Vector2( 800, 382 )
 rect_pivot_offset = Vector2( 607, 226 )
 script = ExtResource( 2 )
 
@@ -27,30 +28,38 @@ margin_right = 760.0
 margin_bottom = 14.0
 
 [node name="WindowLabel" type="Label" parent="Buy/Top"]
-margin_right = 179.0
+margin_right = 133.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Item"
 
 [node name="WindowLabel2" type="Label" parent="Buy/Top"]
-margin_left = 183.0
-margin_right = 362.0
+margin_left = 137.0
+margin_right = 271.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Available"
 align = 1
 
 [node name="WindowLabel3" type="Label" parent="Buy/Top"]
-margin_left = 366.0
-margin_right = 545.0
+margin_left = 275.0
+margin_right = 408.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Price"
 align = 1
 
+[node name="DateLabelTemp" type="Label" parent="Buy/Top"]
+margin_left = 412.0
+margin_right = 546.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Date"
+align = 1
+
 [node name="Label" type="Label" parent="Buy/Top"]
-margin_left = 549.0
-margin_right = 759.0
+margin_left = 550.0
+margin_right = 760.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 210, 0 )
 size_flags_horizontal = 3
@@ -117,6 +126,7 @@ margin_left = 25.0
 margin_top = 205.0
 margin_right = 775.0
 margin_bottom = 355.0
+rect_min_size = Vector2( 750, 150 )
 
 [node name="ItemSellContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 735.0
@@ -124,10 +134,10 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 735, 150 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 251.0
-margin_top = -147.0
-margin_right = 515.0
-margin_bottom = -17.0
+margin_left = 631.0
+margin_top = 261.0
+margin_right = 895.0
+margin_bottom = 391.0
 color = Color( 0.145098, 0.145098, 0.164706, 1 )
 
 [node name="Info" type="VBoxContainer" parent="ColorRect"]

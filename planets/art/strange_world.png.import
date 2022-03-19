@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wet_world.png-0f45fcb7d448c2bc242d20afbef19bff.stex"
+path="res://.import/strange_world.png-ad629430f17bebcbe6d865517bd501e9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/wet_world.png"
-dest_files=[ "res://.import/wet_world.png-0f45fcb7d448c2bc242d20afbef19bff.stex" ]
+source_file="res://planets/art/strange_world.png"
+dest_files=[ "res://.import/strange_world.png-ad629430f17bebcbe6d865517bd501e9.stex" ]
 
 [params]
 

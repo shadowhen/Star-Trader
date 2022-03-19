@@ -32,10 +32,6 @@ func _process(delta):
 	# Updates the radial value of the ui clock
 	clock.value = week_timer.wait_time - week_timer.time_left
 
-func _process(delta):
-	# Updates the radial value of the ui clock
-	clock.value = week_timer.wait_time - week_timer.time_left
-
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
 		shared_ui.visible = not shared_ui.visible

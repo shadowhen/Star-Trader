@@ -28,30 +28,38 @@ margin_right = 760.0
 margin_bottom = 14.0
 
 [node name="WindowLabel" type="Label" parent="Buy/Top"]
-margin_right = 179.0
+margin_right = 133.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Item"
 
 [node name="WindowLabel2" type="Label" parent="Buy/Top"]
-margin_left = 183.0
-margin_right = 362.0
+margin_left = 137.0
+margin_right = 271.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Available"
 align = 1
 
 [node name="WindowLabel3" type="Label" parent="Buy/Top"]
-margin_left = 366.0
-margin_right = 545.0
+margin_left = 275.0
+margin_right = 408.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Price"
 align = 1
 
+[node name="DateLabelTemp" type="Label" parent="Buy/Top"]
+margin_left = 412.0
+margin_right = 546.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Date"
+align = 1
+
 [node name="Label" type="Label" parent="Buy/Top"]
-margin_left = 549.0
-margin_right = 759.0
+margin_left = 550.0
+margin_right = 760.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 210, 0 )
 size_flags_horizontal = 3

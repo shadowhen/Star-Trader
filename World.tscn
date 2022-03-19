@@ -93,6 +93,7 @@ margin_left = -120.0
 margin_top = 23.0
 margin_right = -20.0
 margin_bottom = 120.0
+max_value = 52.0
 
 [node name="WeekTimer" type="Timer" parent="."]
 wait_time = 60.0

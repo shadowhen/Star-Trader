@@ -1,6 +1,7 @@
 extends Node
 
 signal job_removed(job)
+signal money_update(value)
 
 var inv_data = {}
 var player_stats = {}
@@ -26,6 +27,7 @@ func _ready():
 
 func set_money(p_money) -> void:
 	PlayerData.player_stats["Money"]["Value"] = p_money
+	emit_signal("money_update", p_money)
 
 func get_money() -> int:
 	return PlayerData.player_stats["Money"]["Value"]

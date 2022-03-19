@@ -6,6 +6,9 @@ onready var trade = $Tabs/Trade
 onready var upgrade = $Tabs/Upgrade
 onready var jobs = $Tabs/Jobs
 
+func _ready():
+	PlayerData.connect("money_update", self, "_on_PlayerData_money_update")
+
 func update_info(planet):
 	jobs.setup(planet)
 	
@@ -24,3 +27,8 @@ func _on_HideButton_pressed():
 
 func _on_Upgrade_upgrade():
 	emit_signal("upgrade_ship")
+
+
+func _on_PlayerData_money_update(value):
+	trade.clean()
+	trade.setup()

@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+onready var trail = $Trail
+
 var move_pressed = false
 
 # movement variables
@@ -33,8 +35,10 @@ func _movement_loop(delta):
 	var new_scale = 1
 	if is_moving == false:
 		speed = 0
+		trail.emitting = false
 	else:
 		speed += acceleration * delta
+		trail.emitting = true
 		if speed > max_speed:
 			speed = max_speed
 		new_scale = 1 + 2.5 * (speed / max_speed)

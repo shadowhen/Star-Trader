@@ -24,6 +24,8 @@ var player_tex1 = preload("res://player/player-ship-inventory-1.png")
 var player_tex2 = preload("res://player/player-ship-inventory-2.png")
 
 func _ready():
+	MusicPlayer.start()
+	
 	objective.text = "Click a planet to travel and the game will start."
 	
 	# Randomize seed for random generated jobs
@@ -51,6 +53,8 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+	if Input.is_action_just_pressed("mute_music"):
+		MusicPlayer.toggle_music()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:

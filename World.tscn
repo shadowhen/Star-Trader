@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://space-background.png" type="Texture" id=2]
 [ext_resource path="res://ui/SharedUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://planets/Planet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Game.gd" type="Script" id=5]
+[ext_resource path="res://ui/ToggleLabel.gd" type="Script" id=6]
 [ext_resource path="res://planets/art/wet_world.png" type="Texture" id=7]
 [ext_resource path="res://planets/art/ice_world.png" type="Texture" id=8]
 [ext_resource path="res://planets/art/lava_world.png" type="Texture" id=9]
@@ -157,6 +158,31 @@ margin_top = -116.0
 margin_right = -11.0
 margin_bottom = -10.0
 alignment = 2
+
+[node name="ToggleMusic" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_top = 38.0
+margin_right = 198.0
+margin_bottom = 52.0
+
+[node name="Description" type="Label" parent="GUI/VBoxContainer/ToggleMusic"]
+margin_right = 129.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Toggle Music (ON):"
+align = 2
+script = ExtResource( 6 )
+global_signal_name = "toggle_music"
+on_text = "Toggle Music (ON):"
+off_text = "Toggle Music (OFF):"
+
+[node name="Key" type="Label" parent="GUI/VBoxContainer/ToggleMusic"]
+margin_left = 133.0
+margin_right = 198.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "M"
+align = 2
 
 [node name="Travel" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 56.0

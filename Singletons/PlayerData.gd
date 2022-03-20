@@ -9,6 +9,8 @@ var player_stats = {}
 var job_log = []
 var money setget set_money, get_money
 var time_used setget set_time_used, get_time_used
+var inventory_space setget set_inventory_space, get_inventory_space
+var inventory_cap setget set_inventory_cap, get_inventory_cap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,6 +40,18 @@ func set_time_used(p_time_used : int) -> void:
 
 func get_time_used() -> int:
 	return int(PlayerData.player_stats["TimeUsed"]["Value"])
+
+func set_inventory_space(p_inventory_space) -> void:
+	PlayerData.player_stats["InventorySpaceUsed"]["Value"] = p_inventory_space
+
+func get_inventory_space() -> int:
+	return int(PlayerData.player_stats["InventorySpaceUsed"]["Value"])
+
+func set_inventory_cap(p_inventory_cap) -> void:
+	PlayerData.player_stats["InventoryCap"]["Value"] = p_inventory_cap
+
+func get_inventory_cap() -> int:
+	return int(PlayerData.player_stats["InventoryCap"]["Value"])
 
 func remove_job(job : Job):
 	if job_log.has(job):

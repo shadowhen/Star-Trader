@@ -33,6 +33,14 @@ func add_available_job(job : Job):
 
 
 func _on_take_job(job):
+	var current_job = job.current_job
+	var new_cargo_space = PlayerData.inventory_space + current_job.cargo_space
+	
+	# Break if player does not have enough space for cargo
+	if new_cargo_space > PlayerData.inventory_cap:
+		return
+	PlayerData.inventory_space = new_cargo_space
+	
 	# Move job to the right side
 	left_side.remove_child(job)
 	right_side.add_child(job)

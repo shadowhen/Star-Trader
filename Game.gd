@@ -29,18 +29,15 @@ func _ready():
 	for planet in get_tree().get_nodes_in_group("planets"):
 		planet.connect("player_enter", self, "_on_Planet_player_enter")
 		planet.connect("player_exit", self, "_on_Planet_player_exit")
-		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Credits: " + str(PlayerData.money)
+		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.money)
 		
 		if player_ship_level == 1:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +3. 300 monies. "
 		elif player_ship_level == 2:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
 		
-	
 	simulation.randomize_jobs()
-	
 	PlayerData.connect("job_removed", self, "_on_PlayerData_job_removed")
-
 
 func _process(delta):
 	if week_timer.is_stopped():
@@ -93,6 +90,8 @@ func _upgrade_ship():
 			PlayerData.player_stats["ShipLvl"]["Value"] = 2
 			PlayerData.player_stats["InventoryCap"]["Value"] = 13
 			PlayerData.money -= 300
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 2: Inventory +5. 800 monies. "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 			bullet_sprite.set_texture(player_tex1)
 			panel_sprite.set_texture(player_tex1)
 			print("You've acquired '1st Upgrade'! ")
@@ -106,6 +105,8 @@ func _upgrade_ship():
 			PlayerData.player_stats["ShipLvl"]["Value"] = 3
 			PlayerData.player_stats["InventoryCap"]["Value"] = 17
 			PlayerData.money -= 800
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Fully Upgraded! "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 			bullet_sprite.set_texture(player_tex2)
 			panel_sprite.set_texture(player_tex2)
 			print("You've acquired '2nd Upgrade'! ")

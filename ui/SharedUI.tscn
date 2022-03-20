@@ -84,4 +84,5 @@ __meta__ = {
 }
 
 [connection signal="upgrade" from="Tabs/Upgrade" to="." method="_on_Upgrade_upgrade"]
+[connection signal="job_taken" from="Tabs/Jobs" to="." method="_on_Jobs_job_taken"]
 [connection signal="pressed" from="HideButton" to="." method="_on_HideButton_pressed"]

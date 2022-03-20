@@ -7,6 +7,8 @@ onready var job_template = preload("res://ui/jobs/JobTemplate.tscn")
 
 var current_planet = null
 
+signal job_taken
+
 func _ready():
 	PlayerData.connect("job_removed", self, "_on_job_removed")
 
@@ -38,8 +40,8 @@ func _on_take_job(job):
 	
 	# Break if player does not have enough space for cargo
 	if new_cargo_space > PlayerData.inventory_cap:
+		GlobalSignals.annouce_message("Not enough cargo space for a job")
 		return
-	PlayerData.inventory_space = new_cargo_space
 	
 	# Move job to the right side
 	left_side.remove_child(job)
@@ -54,6 +56,8 @@ func _on_take_job(job):
 	
 	if current_planet != null:
 		current_planet.available_jobs.erase(job.current_job)
+	
+	emit_signal("job_taken")
 
 func _on_job_removed(job):
 	if job.destination != current_planet:

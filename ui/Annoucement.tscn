@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/Annoucement.gd" type="Script" id=1]
+
+[node name="Annoucement" type="Label"]
+margin_left = 10.0
+margin_right = 1250.0
+margin_bottom = 46.0
+text = "Cannot take job. No cargo space avaliable."
+valign = 1
+script = ExtResource( 1 )
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="FadeTimer" to="." method="_on_FadeTimer_timeout"]

@@ -16,6 +16,12 @@ func _on_Buy_Pressed() -> void:
 		
 		# take the money for the sale
 		var newMoney = int(PlayerData.player_stats["Money"]["Value"]) - int(get_node("Price").text)
+		
+		# Check the money does not go into negative balance
+		if newMoney < 0:
+			GlobalSignals.annouce_message("Cannot afford cargo")
+			return
+		
 		PlayerData.player_stats["Money"]["Value"] = str(newMoney)
 		
 		# update the value for player money and inventory space left on trade screen
@@ -63,4 +69,5 @@ func _on_Buy_Pressed() -> void:
 		Owner.setup()
 	# if inventory is full and buy pressed
 	else:
+		GlobalSignals.annouce_message("Not enough cargo space")
 		print("Error buying item, inventory full!")

@@ -32,3 +32,7 @@ func _on_Upgrade_upgrade():
 func _on_PlayerData_money_update(value):
 	trade.clean()
 	trade.setup()
+
+
+func _on_Jobs_job_taken():
+	trade.setup_info()

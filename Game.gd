@@ -1,12 +1,13 @@
 extends Node
 
-enum GameState { TRAVEL, DOCKED, WINNER, LOSER }
+enum GameState { TRAVEL, DOCKED, GAME_OVER }
 var game_state = GameState.TRAVEL
 
 onready var shared_ui = $GUI/SharedUI
 onready var week_timer = $WeekTimer
 onready var clock = $GUI/Clock
 onready var simulation = $Simulation
+onready var objective = $GUI/Objective
 
 export(int) var money_win = 1000
 export(int) var weeks_left = 52
@@ -23,6 +24,8 @@ var player_tex1 = preload("res://player/player-ship-inventory-1.png")
 var player_tex2 = preload("res://player/player-ship-inventory-2.png")
 
 func _ready():
+	objective.text = "Click a planet to travel and the game will start."
+	
 	# Randomize seed for random generated jobs
 	randomize()
 	
@@ -45,12 +48,20 @@ func _process(delta):
 	else:
 		# Updates the radial value of the ui clock
 		clock.value = PlayerData.time_used
+	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
 		shared_ui.visible = not shared_ui.visible
 
 func _on_Planet_player_enter(planet):
+	if game_state != GameState.GAME_OVER:
+		objective.text = "Maintain balance of 1000 monies, so your family can live in paradise before clock runs out."
+	
+	GlobalSignals.annouce_state_message("Docked at %s" % planet.planet_name)
+	
 	game_state = GameState.DOCKED
 	
 	shared_ui.show()
@@ -117,6 +128,9 @@ func _upgrade_ship():
 
 # Signal function for WeekTimer's timeout
 func _on_WeekTimer_timeout():
+	if game_state == GameState.GAME_OVER:
+		return
+	
 	# Countdown the number of weeks left
 	#weeks_left -= 1
 	PlayerData.time_used += 1
@@ -131,13 +145,15 @@ func _on_WeekTimer_timeout():
 		random_event_time_counter = 0
 		simulation.clear_planet_jobs()
 		simulation.randomize_jobs()
+		GlobalSignals.annouce_message("New jobs available")
 
 # Declares the game to be game over
 func game_over():
+	game_state = GameState.GAME_OVER
 	if PlayerData.money >= money_win:
-		game_state = GameState.WINNER
+		objective.text = "You won! Your family will now live in paradise."
 	else:
-		game_state = GameState.LOSER
+		objective.text = "You lost. Your family won't be to able live in paradise."
 
 func _on_PlayerData_job_removed(job):
 	var temp = popup_template.instance()

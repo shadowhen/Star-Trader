@@ -9,7 +9,7 @@ var player_stats = {}
 var job_log = []
 var money setget set_money, get_money
 var time_used setget set_time_used, get_time_used
-var inventory_space setget set_inventory_space, get_inventory_space
+var inventory_space setget , get_inventory_space
 var inventory_cap setget set_inventory_cap, get_inventory_cap
 
 # Called when the node enters the scene tree for the first time.
@@ -41,11 +41,21 @@ func set_time_used(p_time_used : int) -> void:
 func get_time_used() -> int:
 	return int(PlayerData.player_stats["TimeUsed"]["Value"])
 
-func set_inventory_space(p_inventory_space) -> void:
-	PlayerData.player_stats["InventorySpaceUsed"]["Value"] = p_inventory_space
-
 func get_inventory_space() -> int:
-	return int(PlayerData.player_stats["InventorySpaceUsed"]["Value"])
+	var inventory_space_used = 0
+	
+	# Loop through the inventory and increment space if item id is valid
+	for i in PlayerData.inv_data.keys():
+		var itemID = PlayerData.inv_data[i]["InvItemID"]
+		if itemID != -1:
+			inventory_space_used += 1
+	
+	# Loop through the job log and increase space based on the job's
+	# cargo space
+	for job in job_log:
+		inventory_space_used += job.cargo_space
+	
+	return inventory_space_used
 
 func set_inventory_cap(p_inventory_cap) -> void:
 	PlayerData.player_stats["InventoryCap"]["Value"] = p_inventory_cap

@@ -6,10 +6,14 @@ var game_state = GameState.TRAVEL
 onready var shared_ui = $GUI/SharedUI
 onready var week_timer = $WeekTimer
 onready var clock = $GUI/Clock
+onready var simulation = $Simulation
 
 export(int) var money_win = 1000
 export(int) var weeks_left = 52
 export(PackedScene) var popup_template
+
+# Used to count before triggering an random event
+var random_event_time_counter = 0
 
 # These variables are used to upgrade the ship. 
 onready var bullet_sprite = get_node("Player/Sprite")
@@ -32,27 +36,11 @@ func _ready():
 		elif player_ship_level == 2:
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
 		
-		# Randomize number of jobs for each planet
-		var num_jobs = randi() % 3
-		for i in range(num_jobs):
-			var reward = 10 + randi() % 41
-			var cargo_space = 1 + randi() % 10
-			var destination = randomize_planet(planet)
-			var created_job = Job.new(reward, cargo_space, destination)
-			planet.available_jobs.push_back(created_job)
+	
+	simulation.randomize_jobs()
 	
 	PlayerData.connect("job_removed", self, "_on_PlayerData_job_removed")
 
-# Randomize planet that is not the origin
-func randomize_planet(origin):
-	var planets = get_tree().get_nodes_in_group("planets")
-	
-	# Loop until we find a planet that is not the origin
-	while true:
-		# Randomly pick a planet
-		var temp = planets[randi() % len(planets)]
-		if temp != origin:
-			return temp
 
 func _process(delta):
 	if week_timer.is_stopped():
@@ -131,15 +119,20 @@ func _on_WeekTimer_timeout():
 	# Countdown the number of weeks left
 	#weeks_left -= 1
 	PlayerData.time_used += 1
+	random_event_time_counter += 1
 	
 	# Ends the game when time runs out completely
 	if PlayerData.time_used >= weeks_left:
 		game_over()
+	
+	# Randomizes planets when the counter reaches this number
+	if random_event_time_counter >= 3:
+		random_event_time_counter = 0
+		simulation.clear_planet_jobs()
+		simulation.randomize_jobs()
 
 # Declares the game to be game over
 func game_over():
-	print("All weeks are exhausted")
-	
 	if PlayerData.money >= money_win:
 		game_state = GameState.WINNER
 	else:

@@ -30,12 +30,15 @@ func _physics_process(delta):
 	_movement_loop(delta)
 		
 func _movement_loop(delta):
+	var new_scale = 1
 	if is_moving == false:
 		speed = 0
 	else:
 		speed += acceleration * delta
 		if speed > max_speed:
 			speed = max_speed
+		new_scale = 1 + 2.5 * (speed / max_speed)
+	scale = Vector2(new_scale, new_scale)
 	
 	velocity = position.direction_to(destination) * speed
 	look_at(destination)

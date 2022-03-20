@@ -107,9 +107,111 @@ text = "Zero"
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="SharedUI" parent="GUI" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 43.0
+margin_top = 100.0
+margin_right = -267.0
+margin_bottom = -90.0
+
+[node name="Top" parent="GUI/SharedUI/Tabs/Trade/Buy" index="0"]
+margin_right = 922.0
+
+[node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/Buy/Top" index="0"]
+margin_right = 174.0
+
+[node name="WindowLabel2" parent="GUI/SharedUI/Tabs/Trade/Buy/Top" index="1"]
+margin_left = 178.0
+margin_right = 352.0
+
+[node name="WindowLabel3" parent="GUI/SharedUI/Tabs/Trade/Buy/Top" index="2"]
+margin_left = 356.0
+margin_right = 530.0
+
+[node name="DateLabelTemp" parent="GUI/SharedUI/Tabs/Trade/Buy/Top" index="3"]
+margin_left = 534.0
+margin_right = 708.0
+
+[node name="Label" parent="GUI/SharedUI/Tabs/Trade/Buy/Top" index="4"]
+margin_left = 712.0
+margin_right = 922.0
+
+[node name="HSeparator" parent="GUI/SharedUI/Tabs/Trade/Buy" index="1"]
+margin_right = 922.0
+
+[node name="BuyList" parent="GUI/SharedUI/Tabs/Trade/Buy" index="2"]
+margin_right = 922.0
+
+[node name="VBoxContainer2" parent="GUI/SharedUI/Tabs/Trade/Sell" index="0"]
+margin_right = 916.0
+
+[node name="Row Labels" parent="GUI/SharedUI/Tabs/Trade/Sell/VBoxContainer2" index="0"]
+margin_right = 916.0
+
+[node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/Sell/VBoxContainer2/Row Labels" index="0"]
+margin_right = 302.0
+
+[node name="WindowLabel3" parent="GUI/SharedUI/Tabs/Trade/Sell/VBoxContainer2/Row Labels" index="1"]
+margin_left = 306.0
+margin_right = 609.0
+
+[node name="WindowLabel10" parent="GUI/SharedUI/Tabs/Trade/Sell/VBoxContainer2/Row Labels" index="2"]
+margin_left = 613.0
+margin_right = 916.0
+
+[node name="HSeparator" parent="GUI/SharedUI/Tabs/Trade/Sell" index="1"]
+margin_right = 916.0
+
+[node name="ColorRect" parent="GUI/SharedUI/Tabs/Trade" index="3"]
+margin_left = 983.0
+margin_top = 46.0
+margin_right = 1195.0
+margin_bottom = 138.0
+
+[node name="VBoxContainer" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info" index="0"]
+margin_right = 189.0
+
+[node name="Time" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="0"]
+margin_right = 189.0
+
+[node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Time" index="0"]
+margin_right = 189.0
+
+[node name="Money" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="1"]
+margin_right = 189.0
+
+[node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Money" index="0"]
+margin_right = 92.0
+
+[node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Money" index="1"]
+margin_left = 96.0
+margin_right = 189.0
+
+[node name="Ship Level" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="2"]
+margin_right = 189.0
+
+[node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Ship Level" index="0"]
+margin_right = 92.0
+
+[node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Ship Level" index="1"]
+margin_left = 96.0
+margin_right = 189.0
+
+[node name="InventorySpace" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="3"]
+margin_right = 189.0
+
+[node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/InventorySpace" index="0"]
+margin_right = 106.0
+
+[node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/InventorySpace" index="1"]
+margin_left = 110.0
+margin_right = 189.0
+
+[node name="Close" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info" index="1"]
 visible = false
-margin_left = -63.0
-margin_right = -63.0
+margin_right = 189.0
 
 [node name="Clock" parent="GUI" instance=ExtResource( 13 )]
 anchor_left = 1.0
@@ -158,6 +260,31 @@ margin_top = -116.0
 margin_right = -11.0
 margin_bottom = -10.0
 alignment = 2
+
+[node name="ToggleSound" type="HBoxContainer" parent="GUI/VBoxContainer"]
+margin_top = 20.0
+margin_right = 198.0
+margin_bottom = 34.0
+
+[node name="Description" type="Label" parent="GUI/VBoxContainer/ToggleSound"]
+margin_right = 129.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Toggle Sound (ON):"
+align = 2
+script = ExtResource( 6 )
+global_signal_name = "toggle_sound"
+on_text = "Toggle Sound (ON):"
+off_text = "Toggle Sound (OFF):"
+
+[node name="Key" type="Label" parent="GUI/VBoxContainer/ToggleSound"]
+margin_left = 133.0
+margin_right = 198.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "N"
+align = 2
 
 [node name="ToggleMusic" type="HBoxContainer" parent="GUI/VBoxContainer"]
 margin_top = 38.0
@@ -235,7 +362,7 @@ margin_bottom = 106.0
 margin_right = 129.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Restart:"
+text = "Restart Game:"
 align = 2
 
 [node name="Key" type="Label" parent="GUI/VBoxContainer/Restart"]
@@ -261,3 +388,5 @@ script = ExtResource( 15 )
 [editable path="Planets/Planet5"]
 [editable path="Planets/Planet6"]
 [editable path="Planets/Planet7"]
+[editable path="GUI/SharedUI"]
+[editable path="GUI/SharedUI/Tabs/Trade"]

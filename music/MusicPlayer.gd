@@ -21,7 +21,7 @@ func stop():
 	GlobalSignals.emit_signal(GLOBAL_SIGNAL_NAME, false)
 
 
-func toggle_music():
+func toggle():
 	if music_player.playing:
 		stop()
 	else:

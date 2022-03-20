@@ -25,6 +25,7 @@ var player_tex2 = preload("res://player/player-ship-inventory-2.png")
 
 func _ready():
 	MusicPlayer.start()
+	SoundPlayer.stop()
 	
 	objective.text = "Click a planet to travel and the game will start."
 	
@@ -53,8 +54,10 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
-	if Input.is_action_just_pressed("mute_music"):
-		MusicPlayer.toggle_music()
+	if Input.is_action_just_pressed("toggle_music"):
+		MusicPlayer.toggle()
+	if Input.is_action_just_pressed("toggle_sound"):
+		SoundPlayer.toggle()
 
 func _unhandled_input(event):
 	if event.is_action_pressed("trade") and game_state == GameState.DOCKED:
@@ -70,6 +73,8 @@ func _on_Planet_player_enter(planet):
 	
 	shared_ui.show()
 	shared_ui.update_info(planet)
+	
+	SoundPlayer.play("dock")
 	
 	var complete_jobs = []
 	for job in PlayerData.job_log:

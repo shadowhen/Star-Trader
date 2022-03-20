@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sounds/SoundPlayer.gd" type="Script" id=1]
+[ext_resource path="res://sounds/travel.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/dock.wav" type="AudioStream" id=3]
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource( 1 )
+sounds = {
+"dock": ExtResource( 3 ),
+"travel": ExtResource( 2 )
+}
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+bus = "SoundEffects"

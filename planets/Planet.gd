@@ -14,6 +14,7 @@ func _ready():
 func _on_Planet_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("move"):
 		GlobalSignals.annouce_state_message("Traveling to %s" % planet_name)
+		SoundPlayer.play("travel")
 		emit_signal("click_move", global_position)
 
 func _on_Planet_body_entered(body):

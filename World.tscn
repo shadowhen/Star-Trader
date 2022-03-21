@@ -323,52 +323,10 @@ size_flags_stretch_ratio = 0.5
 text = "M"
 align = 2
 
-[node name="Travel" type="HBoxContainer" parent="GUI/Help"]
+[node name="Restart" type="HBoxContainer" parent="GUI/Help"]
 margin_top = 56.0
 margin_right = 198.0
 margin_bottom = 70.0
-
-[node name="Description" type="Label" parent="GUI/Help/Travel"]
-margin_right = 129.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Travel to Planet:"
-align = 2
-
-[node name="Key" type="Label" parent="GUI/Help/Travel"]
-margin_left = 133.0
-margin_right = 198.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-text = "Left Click"
-align = 2
-
-[node name="Trade" type="HBoxContainer" parent="GUI/Help"]
-margin_top = 74.0
-margin_right = 198.0
-margin_bottom = 88.0
-
-[node name="Description" type="Label" parent="GUI/Help/Trade"]
-margin_right = 129.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-text = "Trade:"
-align = 2
-
-[node name="Key" type="Label" parent="GUI/Help/Trade"]
-margin_left = 133.0
-margin_right = 198.0
-margin_bottom = 14.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-text = "T"
-align = 2
-
-[node name="Restart" type="HBoxContainer" parent="GUI/Help"]
-margin_top = 92.0
-margin_right = 198.0
-margin_bottom = 106.0
 
 [node name="Description" type="Label" parent="GUI/Help/Restart"]
 margin_right = 129.0
@@ -384,6 +342,48 @@ margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 text = "R"
+align = 2
+
+[node name="Trade" type="HBoxContainer" parent="GUI/Help"]
+margin_top = 74.0
+margin_right = 198.0
+margin_bottom = 88.0
+
+[node name="Description" type="Label" parent="GUI/Help/Trade"]
+margin_right = 129.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Open/Close Trade:"
+align = 2
+
+[node name="Key" type="Label" parent="GUI/Help/Trade"]
+margin_left = 133.0
+margin_right = 198.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "T"
+align = 2
+
+[node name="Travel" type="HBoxContainer" parent="GUI/Help"]
+margin_top = 92.0
+margin_right = 198.0
+margin_bottom = 106.0
+
+[node name="Description" type="Label" parent="GUI/Help/Travel"]
+margin_right = 129.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Travel to Planet:"
+align = 2
+
+[node name="Key" type="Label" parent="GUI/Help/Travel"]
+margin_left = 133.0
+margin_right = 198.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Left Click"
 align = 2
 
 [node name="WeekTimer" type="Timer" parent="."]

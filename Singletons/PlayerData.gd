@@ -14,6 +14,10 @@ var inventory_cap setget set_inventory_cap, get_inventory_cap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	restart()
+
+
+func restart():
 	# parses inventory data
 	var inv_data_file = File.new()
 	inv_data_file.open("res://Data/invData.json", File.READ)
@@ -27,6 +31,7 @@ func _ready():
 	var stats_data_json = JSON.parse(stats_data_file.get_as_text())
 	stats_data_file.close()
 	player_stats = stats_data_json.result
+
 
 func set_money(p_money : int) -> void:
 	PlayerData.player_stats["Money"]["Value"] = p_money

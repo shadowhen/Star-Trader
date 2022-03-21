@@ -53,6 +53,8 @@ func _process(delta):
 		clock.value = PlayerData.time_used
 	
 	if Input.is_action_just_pressed("restart"):
+		GameData.restart()
+		PlayerData.restart()
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("toggle_music"):
 		MusicPlayer.toggle()

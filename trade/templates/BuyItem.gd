@@ -8,6 +8,10 @@ func _ready():
 	sellButton.connect("pressed", self, "_on_Buy_Pressed")
 
 func _on_Buy_Pressed() -> void:
+	if PlayerData.inventory_space >= PlayerData.inventory_cap:
+		GlobalSignals.annouce_message("Not enough space to buy cargo")
+		return
+	
 	# only enable buying if inventory is not full
 	if (PlayerData.player_stats["InventorySpaceUsed"]["Value"] < PlayerData.player_stats["InventoryCap"]["Value"]):
 		
@@ -67,6 +71,8 @@ func _on_Buy_Pressed() -> void:
 			
 		Owner.clean()
 		Owner.setup()
+		
+		GlobalSignals.update_info()
 	# if inventory is full and buy pressed
 	else:
 		GlobalSignals.annouce_message("Not enough cargo space")

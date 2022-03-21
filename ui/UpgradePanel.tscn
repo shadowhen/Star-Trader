@@ -43,6 +43,7 @@ text = "Upgrades"
 align = 1
 
 [node name="CashAmount" type="Label" parent="Container/RightSide/VBoxContainer"]
+visible = false
 margin_top = 18.0
 margin_right = 319.0
 margin_bottom = 32.0
@@ -51,9 +52,9 @@ align = 1
 valign = 1
 
 [node name="UpgradeButton" type="Button" parent="Container/RightSide/VBoxContainer"]
-margin_top = 36.0
+margin_top = 18.0
 margin_right = 319.0
-margin_bottom = 56.0
+margin_bottom = 38.0
 text = "Upgrade"
 
 [connection signal="pressed" from="Container/RightSide/VBoxContainer/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]

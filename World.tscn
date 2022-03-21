@@ -107,6 +107,7 @@ text = "Zero"
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="SharedUI" parent="GUI" instance=ExtResource( 3 )]
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -165,10 +166,11 @@ margin_right = 916.0
 margin_right = 916.0
 
 [node name="ColorRect" parent="GUI/SharedUI/Tabs/Trade" index="3"]
-margin_left = 983.0
-margin_top = 46.0
-margin_right = 1195.0
-margin_bottom = 138.0
+visible = false
+margin_left = 993.0
+margin_top = 31.0
+margin_right = 1205.0
+margin_bottom = 123.0
 
 [node name="VBoxContainer" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info" index="0"]
 margin_right = 189.0
@@ -178,26 +180,29 @@ margin_right = 189.0
 
 [node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Time" index="0"]
 margin_right = 189.0
+align = 0
 
 [node name="Money" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="1"]
 margin_right = 189.0
 
 [node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Money" index="0"]
-margin_right = 92.0
+margin_right = 105.0
 
 [node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Money" index="1"]
-margin_left = 96.0
+margin_left = 109.0
 margin_right = 189.0
+size_flags_stretch_ratio = 0.75
 
 [node name="Ship Level" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="2"]
 margin_right = 189.0
 
 [node name="WindowLabel" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Ship Level" index="0"]
-margin_right = 92.0
+margin_right = 105.0
 
 [node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/Ship Level" index="1"]
-margin_left = 96.0
+margin_left = 109.0
 margin_right = 189.0
+size_flags_stretch_ratio = 0.75
 
 [node name="InventorySpace" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer" index="3"]
 margin_right = 189.0
@@ -208,10 +213,17 @@ margin_right = 106.0
 [node name="Label" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info/VBoxContainer/InventorySpace" index="1"]
 margin_left = 110.0
 margin_right = 189.0
+size_flags_stretch_ratio = 0.75
 
 [node name="Close" parent="GUI/SharedUI/Tabs/Trade/ColorRect/Info" index="1"]
 visible = false
 margin_right = 189.0
+
+[node name="InfoNow" parent="GUI/SharedUI" index="2"]
+margin_left = 995.0
+margin_top = 70.0
+margin_right = 1218.0
+margin_bottom = 159.0
 
 [node name="Clock" parent="GUI" instance=ExtResource( 13 )]
 anchor_left = 1.0
@@ -250,7 +262,7 @@ text = "Maintain a balance 1000 monies before time runs out"
 align = 1
 valign = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI"]
+[node name="Help" type="VBoxContainer" parent="GUI"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -261,12 +273,12 @@ margin_right = -11.0
 margin_bottom = -10.0
 alignment = 2
 
-[node name="ToggleSound" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="ToggleSound" type="HBoxContainer" parent="GUI/Help"]
 margin_top = 20.0
 margin_right = 198.0
 margin_bottom = 34.0
 
-[node name="Description" type="Label" parent="GUI/VBoxContainer/ToggleSound"]
+[node name="Description" type="Label" parent="GUI/Help/ToggleSound"]
 margin_right = 129.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
@@ -277,7 +289,7 @@ global_signal_name = "toggle_sound"
 on_text = "Toggle Sound (ON):"
 off_text = "Toggle Sound (OFF):"
 
-[node name="Key" type="Label" parent="GUI/VBoxContainer/ToggleSound"]
+[node name="Key" type="Label" parent="GUI/Help/ToggleSound"]
 margin_left = 133.0
 margin_right = 198.0
 margin_bottom = 14.0
@@ -286,12 +298,12 @@ size_flags_stretch_ratio = 0.5
 text = "N"
 align = 2
 
-[node name="ToggleMusic" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="ToggleMusic" type="HBoxContainer" parent="GUI/Help"]
 margin_top = 38.0
 margin_right = 198.0
 margin_bottom = 52.0
 
-[node name="Description" type="Label" parent="GUI/VBoxContainer/ToggleMusic"]
+[node name="Description" type="Label" parent="GUI/Help/ToggleMusic"]
 margin_right = 129.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
@@ -302,7 +314,7 @@ global_signal_name = "toggle_music"
 on_text = "Toggle Music (ON):"
 off_text = "Toggle Music (OFF):"
 
-[node name="Key" type="Label" parent="GUI/VBoxContainer/ToggleMusic"]
+[node name="Key" type="Label" parent="GUI/Help/ToggleMusic"]
 margin_left = 133.0
 margin_right = 198.0
 margin_bottom = 14.0
@@ -311,19 +323,19 @@ size_flags_stretch_ratio = 0.5
 text = "M"
 align = 2
 
-[node name="Travel" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="Travel" type="HBoxContainer" parent="GUI/Help"]
 margin_top = 56.0
 margin_right = 198.0
 margin_bottom = 70.0
 
-[node name="Description" type="Label" parent="GUI/VBoxContainer/Travel"]
+[node name="Description" type="Label" parent="GUI/Help/Travel"]
 margin_right = 129.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Travel to Planet:"
 align = 2
 
-[node name="Key" type="Label" parent="GUI/VBoxContainer/Travel"]
+[node name="Key" type="Label" parent="GUI/Help/Travel"]
 margin_left = 133.0
 margin_right = 198.0
 margin_bottom = 14.0
@@ -332,19 +344,19 @@ size_flags_stretch_ratio = 0.5
 text = "Left Click"
 align = 2
 
-[node name="Trade" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="Trade" type="HBoxContainer" parent="GUI/Help"]
 margin_top = 74.0
 margin_right = 198.0
 margin_bottom = 88.0
 
-[node name="Description" type="Label" parent="GUI/VBoxContainer/Trade"]
+[node name="Description" type="Label" parent="GUI/Help/Trade"]
 margin_right = 129.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Trade:"
 align = 2
 
-[node name="Key" type="Label" parent="GUI/VBoxContainer/Trade"]
+[node name="Key" type="Label" parent="GUI/Help/Trade"]
 margin_left = 133.0
 margin_right = 198.0
 margin_bottom = 14.0
@@ -353,19 +365,19 @@ size_flags_stretch_ratio = 0.5
 text = "T"
 align = 2
 
-[node name="Restart" type="HBoxContainer" parent="GUI/VBoxContainer"]
+[node name="Restart" type="HBoxContainer" parent="GUI/Help"]
 margin_top = 92.0
 margin_right = 198.0
 margin_bottom = 106.0
 
-[node name="Description" type="Label" parent="GUI/VBoxContainer/Restart"]
+[node name="Description" type="Label" parent="GUI/Help/Restart"]
 margin_right = 129.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 text = "Restart Game:"
 align = 2
 
-[node name="Key" type="Label" parent="GUI/VBoxContainer/Restart"]
+[node name="Key" type="Label" parent="GUI/Help/Restart"]
 margin_left = 133.0
 margin_right = 198.0
 margin_bottom = 14.0

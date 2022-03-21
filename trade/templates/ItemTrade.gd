@@ -57,5 +57,6 @@ func _on_Sell_Pressed() -> void:
 	PlayerData.inv_data[get_node("InvSlotLabel").text]["InvTimeIn"] = -1
 
 	emit_signal("sold")
+	GlobalSignals.update_info()
 	# remove the item from the trading screen
 	self.queue_free()

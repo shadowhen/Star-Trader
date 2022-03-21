@@ -58,6 +58,7 @@ func _on_take_job(job):
 		current_planet.available_jobs.erase(job.current_job)
 	
 	emit_signal("job_taken")
+	GlobalSignals.update_info()
 
 func _on_job_removed(job):
 	if job.destination != current_planet:
@@ -68,4 +69,5 @@ func _on_job_removed(job):
 		if child.current_job == job:
 			right_side.remove_child(child)
 			child.queue_free()
+			GlobalSignals.update_info()
 			break

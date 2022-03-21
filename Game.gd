@@ -159,6 +159,7 @@ func _on_WeekTimer_timeout():
 		random_event_time_counter = 0
 		simulation.clear_planet_jobs()
 		simulation.randomize_jobs()
+		GameData.random_add_items()
 		GlobalSignals.annouce_message("New jobs available")
 
 # Declares the game to be game over

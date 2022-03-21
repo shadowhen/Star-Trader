@@ -24,6 +24,9 @@ func restart():
 	var planet_data_json = JSON.parse(planet_data_file.get_as_text())
 	planet_data_file.close()
 	planet_inventory = planet_data_json.result
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+# Randomly adds items to all planets
+func random_add_items():
+	for i in planet_inventory:
+		for j in planet_inventory[i]:
+			planet_inventory[i][j] += randi() % 6

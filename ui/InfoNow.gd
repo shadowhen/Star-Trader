@@ -12,4 +12,4 @@ func update_info():
 	inventory_space_label.text = str(PlayerData.inventory_space) + " / " + str(PlayerData.player_stats["InventoryCap"]["Value"])
 	ship_label.text = str(PlayerData.player_stats["ShipLvl"]["Value"])
 	money_label.text = str(PlayerData.player_stats["Money"]["Value"])
-	time_label.text = str(PlayerData.player_stats["TimeUsed"]["Value"]) + " Weeks Used, " + str(52 - PlayerData.player_stats["TimeUsed"]["Value"]) + " Remaining"
+	time_label.text = str(min(PlayerData.player_stats["TimeUsed"]["Value"], 52)) + " Weeks Used, " + str(min(52 - PlayerData.player_stats["TimeUsed"]["Value"], 52)) + " Remaining"

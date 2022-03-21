@@ -18,21 +18,26 @@ margin_top = -152.0
 margin_right = 235.0
 margin_bottom = 152.0
 
+[node name="ColorRect" type="ColorRect" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.305882, 0.254902, 0.254902, 1 )
+
 [node name="MarginContainer" type="MarginContainer" parent="Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 96.0
+margin_left = 13.0
 margin_top = 16.0
-margin_right = -96.0
+margin_right = -13.0
 margin_bottom = -16.0
 
 [node name="Info" type="VBoxContainer" parent="Popup/MarginContainer"]
-margin_right = 278.0
+margin_right = 444.0
 margin_bottom = 272.0
 
 [node name="Description" type="Label" parent="Popup/MarginContainer/Info"]
 margin_top = 65.0
-margin_right = 278.0
+margin_right = 444.0
 margin_bottom = 113.0
 size_flags_vertical = 6
 text = "Job Complete
@@ -43,7 +48,7 @@ valign = 1
 
 [node name="Button" type="Button" parent="Popup/MarginContainer/Info"]
 margin_top = 182.0
-margin_right = 278.0
+margin_right = 444.0
 margin_bottom = 272.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5

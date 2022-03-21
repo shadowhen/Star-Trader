@@ -69,7 +69,8 @@ func _on_Planet_player_enter(planet):
 	
 	GlobalSignals.annouce_state_message("Docked at %s" % planet.planet_name)
 	
-	game_state = GameState.DOCKED
+	if game_state != GameState.GAME_OVER:
+		game_state = GameState.DOCKED
 	
 	shared_ui.show()
 	shared_ui.update_info(planet)
@@ -89,7 +90,9 @@ func _on_Planet_player_enter(planet):
 	PlayerData.player_stats["TimeUsed"]["Value"] = clock.value
 
 func _on_Planet_player_exit(planet):
-	game_state = GameState.TRAVEL
+	if game_state != GameState.GAME_OVER:
+		game_state = GameState.TRAVEL
+	
 	shared_ui.hide()
 	
 	# Starts timer if it has not started yet
@@ -159,14 +162,18 @@ func _on_WeekTimer_timeout():
 # Declares the game to be game over
 func game_over():
 	game_state = GameState.GAME_OVER
+	
 	if PlayerData.money >= money_win:
 		objective.text = "You won! Your family will now live in paradise."
 	else:
 		objective.text = "You lost. Your family won't be to able live in paradise."
+	
+	var temp = popup_template.instance()
+	$GUI.add_child(temp)
+	temp.description.text = objective.text
 
 func _on_PlayerData_job_removed(job):
 	var temp = popup_template.instance()
-	print(temp)
 	
 	var desc = "Job Complete\nDeliver %s cargo to %s\nReward: %s monies"
 	var desc_args = [job.cargo_space, job.destination.planet_name, job.money_reward]

@@ -8,16 +8,29 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "Job",
+"language": "GDScript",
+"path": "res://planets/Job.gd"
+} ]
+_global_script_class_icons={
+"Job": ""
+}
+
 [application]
 
-config/name="Game 2"
+config/name="Star Trader"
 run/main_scene="res://World.tscn"
-config/icon="res://icon.png"
+config/icon="res://player/player-ship.png"
 
 [autoload]
 
 GameData="*res://Singletons/GameData.gd"
 PlayerData="*res://Singletons/PlayerData.gd"
+GlobalSignals="*res://Singletons/GlobalSignals.gd"
+MusicPlayer="*res://music/MusicPlayer.tscn"
+SoundPlayer="*res://sounds/SoundPlayer.tscn"
 
 [display]
 
@@ -63,16 +76,23 @@ move={
 }
 trade={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":84,"unicode":0,"echo":false,"script":null)
  ]
 }
-zoom_in={
+restart={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
 }
-zoom_out={
+toggle_music={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_sound={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":78,"unicode":0,"echo":false,"script":null)
+ ]
 }
 
 [layer_names]

@@ -15,3 +15,4 @@ func set_cash_amount(cash_amount : int) -> void:
 
 func _on_UpgradeButton_pressed():
 	emit_signal("upgrade")
+	GlobalSignals.update_info()

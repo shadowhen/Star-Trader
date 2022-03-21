@@ -35,6 +35,9 @@ func setup():
 		currentPlanet = "6"
 	elif (currentPlanet == "Planet7"):
 		currentPlanet = "7"
+	else:
+		# Workaround for restarting the game
+		return
 
 
 	# temp
@@ -47,25 +50,8 @@ func setup():
 		if itemID != -1:
 			inventorySpaceUsed += 1
 			var inv_slot_new = template_inv_slot.instance()
-			inv_slot_new.get_node("FoodTrade/ItemLabel").text =  str(GameData.item_data[str(itemID)]["ItemName"])
-			inv_slot_new.get_node("FoodTrade/InvSlotLabel").text =  str(i)
-			inv_slot_new.get_node("FoodTrade/ItemDate").text =  str(PlayerData.inv_data[i]["WeekAquired"])
-			
-			# set prices
-			var oldPrice = int(GameData.item_data[str(itemID)]["ItemP" + currentPlanet + "SellFor"])
-			var perishableValue = int(GameData.item_data[str(itemID)]["ItemPerishable"]) # remove this * num weeks in cargo from value
-			var currentDate = int(PlayerData.player_stats["TimeUsed"]["Value"])
-			var itemPurchaseDate = int(PlayerData.inv_data[str(i)]["WeekAquired"])
-			var timeInInventory = currentDate - itemPurchaseDate
-			var newPrice = oldPrice - (perishableValue * timeInInventory)
-			
-			# if new price is negative then make 0 instead
-			if (newPrice < 0):
-				newPrice = 0
-			
-			inv_slot_new.get_node("FoodTrade/ItemPriceLabel").text =  str(newPrice)
-			inv_slot_new.get_node("FoodTrade/Sell").text = "Sell for $" + str(newPrice)
-
+			inv_slot_new.setup(i, itemID, currentPlanet)
+			inv_slot_new.connect("sold", self, "setup_info")
 			gridcontainer.add_child(inv_slot_new, true)
 
 	# set up buy slots
@@ -78,9 +64,12 @@ func setup():
 			buy_slot_new.get_node("ItemID").text = str(i)
 			buy_slot_new.get_node("PlanetID").text = "P" + currentPlanet + "Avail"
 			buygridcontainer.add_child(buy_slot_new, true)
+	
+	setup_info()
 
+func setup_info():
 	# set the player stats in the small window above the trade window
-	get_node("ColorRect/Info/VBoxContainer/InventorySpace/Label").text = str(inventorySpaceUsed) + " / " + str(PlayerData.player_stats["InventoryCap"]["Value"])
+	get_node("ColorRect/Info/VBoxContainer/InventorySpace/Label").text = str(PlayerData.inventory_space) + " / " + str(PlayerData.player_stats["InventoryCap"]["Value"])
 	get_node("ColorRect/Info/VBoxContainer/Ship Level/Label").text = str(PlayerData.player_stats["ShipLvl"]["Value"])
 	get_node("ColorRect/Info/VBoxContainer/Money/Label").text = str(PlayerData.player_stats["Money"]["Value"])
 	get_node("ColorRect/Info/VBoxContainer/Time/Label").text = str(PlayerData.player_stats["TimeUsed"]["Value"]) + " Weeks Used, " + str(52 - PlayerData.player_stats["TimeUsed"]["Value"]) + " Remaining"

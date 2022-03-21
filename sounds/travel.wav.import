@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/travel.wav-9e7851f2b9fead50d5efd63638c30c77.sample"
+
+[deps]
+
+source_file="res://sounds/travel.wav"
+dest_files=[ "res://.import/travel.wav-9e7851f2b9fead50d5efd63638c30c77.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

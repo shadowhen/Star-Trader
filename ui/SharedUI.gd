@@ -10,6 +10,17 @@ onready var info_now = $InfoNow
 func _ready():
 	PlayerData.connect("money_update", self, "_on_PlayerData_money_update")
 
+func _process(delta):
+	if visible:
+		if Input.is_key_pressed(KEY_1):
+			$Tabs.current_tab = 0
+		if Input.is_key_pressed(KEY_2):
+			$Tabs.current_tab = 1
+		if Input.is_key_pressed(KEY_3):
+			$Tabs.current_tab = 2
+		if Input.is_key_pressed(KEY_ESCAPE):
+			hide()
+
 func update_info(planet):
 	jobs.setup(planet)
 	

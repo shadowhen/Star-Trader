@@ -53,6 +53,8 @@ func _process(delta):
 		clock.value = PlayerData.time_used
 	
 	if Input.is_action_just_pressed("restart"):
+		GameData.restart()
+		PlayerData.restart()
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("toggle_music"):
 		MusicPlayer.toggle()
@@ -157,6 +159,7 @@ func _on_WeekTimer_timeout():
 		random_event_time_counter = 0
 		simulation.clear_planet_jobs()
 		simulation.randomize_jobs()
+		GameData.random_add_items()
 		GlobalSignals.annouce_message("New jobs available")
 
 # Declares the game to be game over

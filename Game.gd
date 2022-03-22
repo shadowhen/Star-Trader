@@ -195,6 +195,7 @@ func _upgrade_ship():
 	# Logic for first upgrade.
 	if player_ship_level == 1:
 		if PlayerData.money < 100:
+			GlobalSignals.annouce_message("Not enough money to upgrade")
 			print("You do not have enough credits to redeem your first upgrade. ")
 		else:
 			player_ship_level = 2
@@ -210,6 +211,7 @@ func _upgrade_ship():
 	# Logic for second upgrade.
 	elif player_ship_level == 2:
 		if PlayerData.money < 250:
+			GlobalSignals.annouce_message("Not enough money to upgrade")
 			print("You do not have enough credits to redeem your second upgrade. ")
 		else:
 			player_ship_level = 3

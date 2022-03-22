@@ -38,9 +38,13 @@ func _ready():
 		get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.money)
 		
 		if player_ship_level == 1:
-			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +3. 300 monies. "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +3. 100 monies. "
 		elif player_ship_level == 2:
-			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 800 monies. "
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 1: Inventory +5. 250 monies. "
+			
+	for rand_event in get_tree().get_nodes_in_group("events"):
+		rand_event.connect("player_enter_asteroid", self, "_on_AsteroidBelt_player_enter")
+		rand_event.connect("player_enter_pirate_zone", self, "_on_PirateZone_player_enter")
 		
 	simulation.randomize_jobs()
 	PlayerData.connect("job_removed", self, "_on_PlayerData_job_removed")
@@ -103,19 +107,99 @@ func _on_Planet_player_exit(planet):
 	
 	# Unpause the game timer
 	week_timer.paused = false
+	
+# This function handles outcomes of a player entering an asteroid field
+func _on_AsteroidBelt_player_enter(rand_event):
+	# Logic for handling what happens in an asteroid field
+	
+	var rng = RandomNumberGenerator.new()
+	var cargo_lost = -1
+	var i = 1
+	var itemsRemoved = 0
+	var rand_num = -1 
+	var randrange = pow(player_ship_level, 2) # higher the ship level, lower the chance of losing cargo
+	
+	rng.randomize()
+	rand_num = rng.randi_range(0, randrange)
+	if rand_num == 0:
+		# Player will lose 1-3 bits of cargo if they have any
+		if PlayerData.player_stats["InventorySpaceUsed"]["Value"] > 0:
+			
+			# remove 1-3 items from the players inventory data
+			cargo_lost = rng.randi_range(1, 3)
+			print("Losing: ", cargo_lost, " bits of cargo!")
+			i = 1
+			itemsRemoved = 0
+			
+			for item in PlayerData.inv_data:
+				if itemsRemoved > cargo_lost - 1:
+					break
+					
+				# If there's an item, remove it (up to 3)
+				if PlayerData.inv_data[str(i)]["InvItemID"] != -1:
+					# Remove item
+					PlayerData.inv_data[str(i)]["InvItemID"] = -1
+					PlayerData.inv_data[str(i)]["InvTimeIn"] = -1
+					PlayerData.player_stats["InventorySpaceUsed"]["Value"] -= 1 
+					itemsRemoved += 1
+				i += 1
+				
+			print("Successfully broke through! Lost ", itemsRemoved, " bits of cargo!")	
+			itemsRemoved = 0	
+			i = 1				
+
+# This function handles outcomes of a player entering the pirate zone
+func _on_PirateZone_player_enter(rand_event):
+	# Logic for handling what happens in an pirate zone
+	
+	var rng = RandomNumberGenerator.new()
+	var cargo_lost = -1
+	var i = 1
+	var itemsRemoved = 0
+	var rand_num = -1 
+	var randrange = 10 - pow(player_ship_level, 2) # higher the ship level, the higher the chance of losing cargo
+	
+	rng.randomize()
+	rand_num = rng.randi_range(0, randrange)
+	if rand_num == 0:
+		# Player will lose 1-3 bits of cargo if they have any
+		if PlayerData.player_stats["InventorySpaceUsed"]["Value"] > 0:
+			
+			# remove 1-3 items from the players inventory data
+			cargo_lost = rng.randi_range(1, 3)
+			print("Losing: ", cargo_lost, " bits of cargo!")
+			i = 1
+			itemsRemoved = 0
+			
+			for item in PlayerData.inv_data:
+				if itemsRemoved > cargo_lost - 1:
+					break
+					
+				# If there's an item, remove it (up to 3)
+				if PlayerData.inv_data[str(i)]["InvItemID"] != -1:
+					# Remove item
+					PlayerData.inv_data[str(i)]["InvItemID"] = -1
+					PlayerData.inv_data[str(i)]["InvTimeIn"] = -1
+					PlayerData.player_stats["InventorySpaceUsed"]["Value"] -= 1 
+					itemsRemoved += 1
+				i += 1
+				
+			print("Successfully broke through! Lost ", itemsRemoved, " bits of cargo!")	
+			itemsRemoved = 0	
+			i = 1				
 
 # This function implements both ship upgrades and visual ship upgrades.  
 func _upgrade_ship():
 	# Logic for first upgrade.
 	if player_ship_level == 1:
-		if PlayerData.money < 300:
+		if PlayerData.money < 100:
 			print("You do not have enough credits to redeem your first upgrade. ")
 		else:
 			player_ship_level = 2
 			PlayerData.player_stats["ShipLvl"]["Value"] = 2
 			PlayerData.player_stats["InventoryCap"]["Value"] = 13
-			PlayerData.money -= 300
-			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 2: Inventory +5. 800 monies. "
+			PlayerData.money -= 100
+			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Upgrade 2: Inventory +5. 250 monies. "
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 			bullet_sprite.set_texture(player_tex1)
 			panel_sprite.set_texture(player_tex1)
@@ -123,13 +207,13 @@ func _upgrade_ship():
 
 	# Logic for second upgrade.
 	elif player_ship_level == 2:
-		if PlayerData.money < 800:
+		if PlayerData.money < 250:
 			print("You do not have enough credits to redeem your second upgrade. ")
 		else:
 			player_ship_level = 3
 			PlayerData.player_stats["ShipLvl"]["Value"] = 3
 			PlayerData.player_stats["InventoryCap"]["Value"] = 17
-			PlayerData.money -= 800
+			PlayerData.money -= 250
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/Label").text = "Fully Upgraded! "
 			get_node("GUI/SharedUI/Tabs/Upgrade/Container/RightSide/VBoxContainer/CashAmount").text = "Money: " + str(PlayerData.player_stats["Money"]["Value"])
 			bullet_sprite.set_texture(player_tex2)

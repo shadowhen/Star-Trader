@@ -145,6 +145,7 @@ func _on_AsteroidBelt_player_enter(rand_event):
 				i += 1
 				
 			print("Successfully broke through! Lost ", itemsRemoved, " bits of cargo!")	
+			GlobalSignals.annouce_message("Lost " + str(itemsRemoved) + " item(s) from travelling through the asteroid belt!")
 			itemsRemoved = 0	
 			i = 1				
 
@@ -185,6 +186,7 @@ func _on_PirateZone_player_enter(rand_event):
 				i += 1
 				
 			print("Successfully broke through! Lost ", itemsRemoved, " bits of cargo!")	
+			GlobalSignals.annouce_message("Lost " + str(itemsRemoved) + " item(s) from pillaging space pirates!")
 			itemsRemoved = 0	
 			i = 1				
 
